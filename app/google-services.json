@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "775718647136",
+    "firebase_url": "https://exalty-99e5d.firebaseio.com",
+    "project_id": "exalty-99e5d",
+    "storage_bucket": "exalty-99e5d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:775718647136:android:cab18d3879ff9e84",
+        "android_client_info": {
+          "package_name": "com.rekam.exalty"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "775718647136-3ivvjm3buu8m0e7om3t6m1gd0a0bsovh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rekam.exalty",
+            "certificate_hash": "1856dfcea9f1c8968adba9746d8b2ed424c38756"
+          }
+        },
+        {
+          "client_id": "775718647136-jtac8el8tdkaqrh4rgf7usffk6ilcmus.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD90I1xKcGBosD5hAFC11vJNB5s86WIyQ8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "775718647136-jtac8el8tdkaqrh4rgf7usffk6ilcmus.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
