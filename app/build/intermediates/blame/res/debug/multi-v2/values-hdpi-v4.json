@@ -4,7 +4,7 @@
             "outputFile": "/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-hdpi-v4/values-hdpi-v4.xml",
             "map": [
                 {
-                    "source": "/Users/sanadell/.gradle/caches/transforms-2/files-2.1/00d997dd13ea65d920bde3822bf9f27d/res/values-hdpi-v4/values-hdpi-v4.xml",
+                    "source": "/Users/sanadell/.gradle/caches/transforms-2/files-2.1/c330372d03dfa776127f3a627c1ab17b/res/values-hdpi-v4/values-hdpi-v4.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

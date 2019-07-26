@@ -4,6 +4,23 @@
             "outputFile": "/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-sq/values-sq.xml",
             "map": [
                 {
+                    "source": "/Users/sanadell/.gradle/caches/transforms-2/files-2.1/eb67c13d90ca0dbf3ee367d7a370e4c6/res/values-sq/values-sq.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "48",
+                        "startColumns": "4",
+                        "startOffsets": "5744",
+                        "endColumns": "100",
+                        "endOffsets": "5840"
+                    }
+                },
+                {
                     "source": "/Users/sanadell/.gradle/caches/transforms-2/files-2.1/6fe6c895dde78824c55b5ff18d3b1d2f/res/values-sq/values.xml",
                     "from": {
                         "startLines": "4",
@@ -21,24 +38,7 @@
                     }
                 },
                 {
-                    "source": "/Users/sanadell/.gradle/caches/transforms-2/files-2.1/37f95d7dae91989f1f86e0d836c80e2a/res/values-sq/values-sq.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "48",
-                        "startColumns": "4",
-                        "startOffsets": "5744",
-                        "endColumns": "100",
-                        "endOffsets": "5840"
-                    }
-                },
-                {
-                    "source": "/Users/sanadell/.gradle/caches/transforms-2/files-2.1/00d997dd13ea65d920bde3822bf9f27d/res/values-sq/values-sq.xml",
+                    "source": "/Users/sanadell/.gradle/caches/transforms-2/files-2.1/c330372d03dfa776127f3a627c1ab17b/res/values-sq/values-sq.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
