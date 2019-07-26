@@ -812,6 +812,10 @@ dimen cardview_compat_inset_shadow
 dimen cardview_default_elevation
 dimen cardview_default_radius
 dimen cat_button_height
+dimen cat_button_large_border_width
+dimen cat_button_large_corner_radius
+dimen cat_button_large_height
+dimen cat_button_large_padding
 dimen cat_button_small_border_width
 dimen cat_button_small_corner_radius
 dimen cat_button_small_height
@@ -1049,6 +1053,12 @@ drawable btn_repeat
 drawable btn_seek_back
 drawable btn_seek_forward
 drawable btn_shuffle
+drawable cat_button_large
+drawable cat_button_large_state_checked
+drawable cat_button_large_state_default
+drawable cat_button_large_state_disabled
+drawable cat_button_large_state_focused
+drawable cat_button_large_state_pressed
 drawable cat_button_small
 drawable cat_button_small_state_checked
 drawable cat_button_small_state_default
@@ -1128,7 +1138,6 @@ id action_menu_presenter
 id action_mode_bar
 id action_mode_bar_stub
 id action_mode_close_button
-id action_settings
 id action_text
 id actions
 id activity_chooser_view_content
@@ -1332,7 +1341,6 @@ id titleDividerNoCustom
 id title_template
 id toggle_repeat_button
 id toggle_shuffle_button
-id toolbar
 id top
 id topPanel
 id touch_outside
@@ -1428,7 +1436,6 @@ layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
 layout support_simple_spinner_dropdown_item
-menu menu_main
 mipmap ic_launcher
 mipmap ic_launcher_round
 mipmap ic_next
@@ -1497,6 +1504,7 @@ string appbar_scrolling_view_behavior
 string authorize
 string bottom_sheet_behavior
 string browse_content
+string cam_txt
 string character_counter_content_description
 string character_counter_pattern
 string common_google_play_services_enable_button
@@ -1527,6 +1535,7 @@ string echo
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
 string firebase_database_url
+string gallery_txt
 string gcm_defaultSenderId
 string get_collection_state
 string google_api_key
@@ -1554,6 +1563,7 @@ string status_bar_notification_info_overflow
 string subscribe_to_capabilities
 string subscribe_to_current_track
 string subscribe_to_player_context
+string surprise_txt
 string title_activity_remote
 string title_current_track
 string title_image_scale_type
@@ -1566,9 +1576,7 @@ style Animation_AppCompat_DropDownUp
 style Animation_AppCompat_Tooltip
 style Animation_Design_BottomSheetDialog
 style AppTheme
-style AppTheme_AppBarOverlay
 style AppTheme_NoActionBar
-style AppTheme_PopupOverlay
 style Base_AlertDialog_AppCompat
 style Base_AlertDialog_AppCompat_Light
 style Base_Animation_AppCompat_Dialog
@@ -2014,6 +2022,7 @@ style Widget_AppCompat_TextView_SpinnerItem
 style Widget_AppCompat_Toolbar
 style Widget_AppCompat_Toolbar_Button_Navigation
 style Widget_Cat_Button
+style Widget_Cat_Button_Large
 style Widget_Cat_Button_Small
 style Widget_Compat_NotificationActionContainer
 style Widget_Compat_NotificationActionText

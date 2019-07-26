@@ -7,29 +7,34 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MainActivity"
     tools:showIn="@layout/activity_main">
-  <RelativeLayout
+  <LinearLayout
       android:id="@+id/appRelativeLayout"
       android:layout_width="match_parent"
-      android:layout_height="match_parent">
+      android:layout_height="match_parent"
+      android:gravity="center"
+      android:orientation="vertical">
     <Button
         android:id="@+id/surprise"
-        android:layout_width="match_parent"
+        android:text="@string/surprise_txt"
+        style="@style/Widget.Cat.Button.Large"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Surprise you?"
-        android:theme="@style/PrimaryButton" />
+        android:filterTouchesWhenObscured="false"/>
     <Button
         android:id="@+id/captureYourWorld"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_below="@id/surprise"
-        android:text="Show me your world"
-        android:theme="@style/PrimaryButton" />
+        android:text="@string/cam_txt"
+        style="@style/Widget.Cat.Button.Large"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:filterTouchesWhenObscured="false" />
     <Button
         android:id="@+id/captureSomeWorld"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Show me some world"
+        android:text="@string/gallery_txt"
         android:layout_below="@id/captureYourWorld"
-        android:theme="@style/PrimaryButton" />
-  </RelativeLayout>
+        style="@style/Widget.Cat.Button.Large"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:filterTouchesWhenObscured="false" />
+  </LinearLayout>
 </RelativeLayout>

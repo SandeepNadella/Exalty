@@ -6,4 +6,9 @@
     <dimen name="cat_button_small_padding">19sp</dimen>
     <dimen name="cat_button_small_corner_radius">12sp</dimen>
     <dimen name="cat_button_small_border_width">1dp</dimen>
+
+    <dimen name="cat_button_large_height">20sp</dimen>
+    <dimen name="cat_button_large_padding">19sp</dimen>
+    <dimen name="cat_button_large_corner_radius">80sp</dimen>
+    <dimen name="cat_button_large_border_width">1dp</dimen>
 </resources>

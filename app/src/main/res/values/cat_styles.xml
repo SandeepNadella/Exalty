@@ -9,7 +9,7 @@
     <style name="TextAppearance.Cat.Button">
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/cat_button_text</item>
-        <item name="android:textAllCaps">true</item>
+        <item name="android:textAllCaps">false</item>
     </style>
 
     <!-- Buttons -->
@@ -31,4 +31,14 @@
         <item name="android:minHeight">@dimen/cat_button_small_height</item>
     </style>
 
+    <style name="Widget.Cat.Button.Large">
+        <item name="android:layout_margin">4dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:background">@drawable/cat_button_large</item>
+        <item name="android:minHeight">@dimen/cat_button_large_height</item>
+        <item name="android:buttonCornerRadius">@dimen/cat_button_large_corner_radius</item>
+    </style>
 </resources>

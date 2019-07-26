@@ -32,4 +32,7 @@
     <string name="title_image_size">Image size</string>
     <string name="title_image_scale_type">Scale type</string>
     <string name="echo">Echo</string>
+    <string name="surprise_txt">Surprise you?</string>
+    <string name="cam_txt">Show me your world</string>
+    <string name="gallery_txt">Show me some world</string>
 </resources>
