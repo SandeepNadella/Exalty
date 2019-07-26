@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-feature android:name="android.hardware.camera" android:required="true" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
@@ -39,6 +40,13 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+        <activity
+            android:name="com.rekam.exalty.RemotePlayerActivity"
+            android:exported="true"
+            android:label="@string/title_activity_remote"
+            android:screenOrientation="portrait"
+            android:theme="@style/LauncherTheme">
+        </activity>
     </application>
 
 </manifest>

@@ -1,7 +1,6 @@
 package com.rekam.exalty;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -41,6 +40,7 @@ import com.google.firebase.ml.vision.label.FirebaseVisionOnDeviceImageLabelerOpt
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -114,6 +114,18 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void startPlaylistRecommendation(List<FirebaseVisionImageLabel> labels) {
+
+        Intent playerIntent = new Intent(MainActivity.this, RemotePlayerActivity.class);
+        List<String> labelsStr = new ArrayList<>();
+        for (FirebaseVisionImageLabel label : labels) {
+            Log.println(Log.DEBUG, "ML Kit", "Label: "+label.getText()+" Confidence: "+label.getConfidence());
+            labelsStr.add(label.getText());
+        }
+        playerIntent.putStringArrayListExtra("labels", (ArrayList<String>) labelsStr);
+        MainActivity.this.startActivity(playerIntent);
     }
 
     private void checkStoragePermission(int requestCode) {
@@ -307,9 +319,7 @@ public class MainActivity extends AppCompatActivity {
             detector.processImage(image).addOnSuccessListener(new OnSuccessListener<List<FirebaseVisionImageLabel>>() {
                 @Override
                 public void onSuccess(List<FirebaseVisionImageLabel> labels) {
-                    for (FirebaseVisionImageLabel label : labels) {
-                        Log.println(Log.DEBUG, "ML Kit", "Label: "+label.getText()+" Confidence: "+label.getConfidence());
-                    }
+                    startPlaylistRecommendation(labels);
                     showError("Labels Generated");
                 }
             }).addOnFailureListener(new OnFailureListener() {

@@ -1,4 +1,4 @@
-#Thu Jul 25 18:55:38 MST 2019
+#Fri Jul 26 12:20:46 MST 2019
 base.0=/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/transforms/dexMerger/debug/5
 path.0=classes.dex
 renamed.0=classes.dex

@@ -1,25 +1,27 @@
 -- Merging decision tree log ---
 provider#androidx.core.content.FileProvider
-INJECTED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:33:9-41:20
+INJECTED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:34:9-42:20
 	android:grantUriPermissions
-		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:37:13-47
+		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:38:13-47
 	android:authorities
 		INJECTED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml
-		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:35:13-64
+		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:36:13-64
 	android:exported
-		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:36:13-37
+		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:37:13-37
 	android:name
-		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:34:13-62
+		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:35:13-62
 manifest
-ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:2:1-44:12
-INJECTED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:2:1-44:12
-INJECTED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:2:1-44:12
-INJECTED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:2:1-44:12
+ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:2:1-52:12
+INJECTED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:2:1-52:12
+INJECTED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:2:1-52:12
+INJECTED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:2:1-52:12
+MERGED from [spotify-app-remote-release-0.6.2.aar] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/152967d9b798da0f81f2caf065c6024e/AndroidManifest.xml:22:1-33:12
 MERGED from [com.google.android.material:material:1.0.0] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/e926036b569a6acdc091b3f5ce8734ae/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.appcompat:appcompat:1.0.0] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/c330372d03dfa776127f3a627c1ab17b/AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.firebase:firebase-core:17.0.0] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/75f78fabcddd2d69b472024352dcf439/AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.firebase:firebase-ml-vision:22.0.0] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/8d60866b0fa909bd690c01fd7b06279d/AndroidManifest.xml:2:1-8:12
 MERGED from [com.google.firebase:firebase-ml-vision-image-label-model:18.0.0] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/89a5d59a9d20a3d1947d97e936817ca8/AndroidManifest.xml:2:1-9:12
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/6a0ed5f783559d5d2c3a1b10919cf91c/AndroidManifest.xml:2:1-11:12
 MERGED from [com.google.android.gms:play-services-auth-base:17.0.0] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/be6d2ec4b9b302a64d9f09b063ca8f6f/AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.gms:play-services-vision:18.0.0] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/3836e33062ee30d16cd83292978ed9f6/AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.android.gms:play-services-vision-image-label:18.0.0] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/f782482096da25befd389dc1e337d0f7/AndroidManifest.xml:2:1-9:12
@@ -73,22 +75,22 @@ MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/sanadell/.gradle/c
 MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/9aaba218748bcb5cd54cc273e64517e0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/935ea5baca189672041a2e2021c94350/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/b03c9e03ed3813774363e51334ee7259/AndroidManifest.xml:17:1-22:12
-INJECTED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:2:1-44:12
-INJECTED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:2:1-44:12
-INJECTED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:2:1-44:12
+INJECTED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:2:1-52:12
+INJECTED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:2:1-52:12
+INJECTED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:2:1-52:12
 	package
 		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:4:5-31
 		INJECTED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml
 	android:versionName
 		INJECTED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml
-		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:2:1-44:12
+		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:2:1-52:12
 		INJECTED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml
 	xmlns:dist
 		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:3:5-61
 	android:versionCode
 		INJECTED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml
-		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:2:1-44:12
+		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:2:1-52:12
 		INJECTED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml
 	xmlns:android
 		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:2:11-69
@@ -108,24 +110,42 @@ uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
 ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:9:5-81
 	android:name
 		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:9:22-78
+uses-permission#android.permission.INTERNET
+ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:10:5-67
+MERGED from [com.google.android.gms:play-services-measurement-api:17.0.0] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/985975c2320a2cc403a4c1552e7233e0/AndroidManifest.xml:22:5-67
+MERGED from [com.google.android.gms:play-services-measurement-api:17.0.0] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/985975c2320a2cc403a4c1552e7233e0/AndroidManifest.xml:22:5-67
+MERGED from [com.google.firebase:firebase-iid:19.0.0] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/fb0ee6808f13827802c3d7c204df8d89/AndroidManifest.xml:23:5-67
+MERGED from [com.google.firebase:firebase-iid:19.0.0] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/fb0ee6808f13827802c3d7c204df8d89/AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement:17.0.0] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/6c8cc1b39a61e053adeb7c441983c54a/AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement:17.0.0] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/6c8cc1b39a61e053adeb7c441983c54a/AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.0.0] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/e8438869b00b702d9b6bef6af9a1c246/AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.0.0] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/e8438869b00b702d9b6bef6af9a1c246/AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.0.0] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/e26973953cf704854bdcf526918d6a55/AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.0.0] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/e26973953cf704854bdcf526918d6a55/AndroidManifest.xml:23:5-67
+	android:name
+		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:10:22-64
 uses-feature#android.hardware.camera
-ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:10:5-84
+ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:11:5-84
 	android:required
-		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:10:58-81
+		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:11:58-81
 	android:name
-		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:10:19-57
+		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:11:19-57
 uses-feature#android.hardware.camera.autofocus
-ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:11:5-70
+ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:12:5-70
 	android:name
-		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:11:19-67
+		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:12:19-67
 application
-ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:13:5-42:19
+ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:14:5-50:19
+MERGED from [spotify-app-remote-release-0.6.2.aar] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/152967d9b798da0f81f2caf065c6024e/AndroidManifest.xml:31:5-20
+MERGED from [spotify-app-remote-release-0.6.2.aar] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/152967d9b798da0f81f2caf065c6024e/AndroidManifest.xml:31:5-20
 MERGED from [com.google.android.material:material:1.0.0] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/e926036b569a6acdc091b3f5ce8734ae/AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.0.0] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/e926036b569a6acdc091b3f5ce8734ae/AndroidManifest.xml:22:5-20
 MERGED from [com.google.firebase:firebase-core:17.0.0] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/75f78fabcddd2d69b472024352dcf439/AndroidManifest.xml:7:5-20
 MERGED from [com.google.firebase:firebase-core:17.0.0] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/75f78fabcddd2d69b472024352dcf439/AndroidManifest.xml:7:5-20
 MERGED from [com.google.firebase:firebase-ml-vision-image-label-model:18.0.0] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/89a5d59a9d20a3d1947d97e936817ca8/AndroidManifest.xml:7:5-20
 MERGED from [com.google.firebase:firebase-ml-vision-image-label-model:18.0.0] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/89a5d59a9d20a3d1947d97e936817ca8/AndroidManifest.xml:7:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/6a0ed5f783559d5d2c3a1b10919cf91c/AndroidManifest.xml:9:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/6a0ed5f783559d5d2c3a1b10919cf91c/AndroidManifest.xml:9:5-20
 MERGED from [com.google.android.gms:play-services-vision:18.0.0] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/3836e33062ee30d16cd83292978ed9f6/AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-vision:18.0.0] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/3836e33062ee30d16cd83292978ed9f6/AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-vision-image-label:18.0.0] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/f782482096da25befd389dc1e337d0f7/AndroidManifest.xml:7:5-20
@@ -177,45 +197,59 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] /Users/sana
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.0.0] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/eb67c13d90ca0dbf3ee367d7a370e4c6/AndroidManifest.xml:22:18-86
 	android:supportsRtl
-		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:18:9-35
+		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:19:9-35
 	android:label
-		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:16:9-41
+		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:17:9-41
 	android:roundIcon
-		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:17:9-54
+		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:18:9-54
 	android:icon
-		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:15:9-43
+		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:16:9-43
 	android:allowBackup
-		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:14:9-35
+		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:15:9-35
 	android:theme
-		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:19:9-40
+		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:20:9-40
 activity#com.rekam.exalty.MainActivity
-ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:20:9-29:20
+ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:21:9-30:20
 	android:label
-		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:22:13-45
+		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:23:13-45
 	android:theme
-		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:23:13-56
+		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:24:13-56
 	android:name
-		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:21:13-41
+		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:22:13-41
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:24:13-28:29
+ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:25:13-29:29
 action#android.intent.action.MAIN
-ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:25:17-69
+ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:26:17-69
 	android:name
-		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:25:25-66
+		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:26:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:27:17-77
+ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:28:17-77
 	android:name
-		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:27:27-74
+		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:28:27-74
 meta-data#com.google.firebase.ml.vision.DEPENDENCIES
-ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:30:9-32:37
+ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:31:9-33:37
 	android:value
-		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:32:13-34
+		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:33:13-34
 	android:name
-		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:31:13-70
+		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:32:13-70
+activity#com.rekam.exalty.RemotePlayerActivity
+ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:43:9-49:20
+	android:screenOrientation
+		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:47:13-49
+	android:label
+		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:46:13-58
+	android:exported
+		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:45:13-36
+	android:theme
+		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:48:13-49
+	android:name
+		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:44:13-65
 uses-sdk
 INJECTED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml
 INJECTED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml
+MERGED from [spotify-app-remote-release-0.6.2.aar] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/152967d9b798da0f81f2caf065c6024e/AndroidManifest.xml:27:5-29:41
+MERGED from [spotify-app-remote-release-0.6.2.aar] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/152967d9b798da0f81f2caf065c6024e/AndroidManifest.xml:27:5-29:41
 MERGED from [com.google.android.material:material:1.0.0] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/e926036b569a6acdc091b3f5ce8734ae/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.material:material:1.0.0] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/e926036b569a6acdc091b3f5ce8734ae/AndroidManifest.xml:20:5-44
 MERGED from [androidx.appcompat:appcompat:1.0.0] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/c330372d03dfa776127f3a627c1ab17b/AndroidManifest.xml:20:5-44
@@ -226,6 +260,8 @@ MERGED from [com.google.firebase:firebase-ml-vision:22.0.0] /Users/sanadell/.gra
 MERGED from [com.google.firebase:firebase-ml-vision:22.0.0] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/8d60866b0fa909bd690c01fd7b06279d/AndroidManifest.xml:6:5-44
 MERGED from [com.google.firebase:firebase-ml-vision-image-label-model:18.0.0] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/89a5d59a9d20a3d1947d97e936817ca8/AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-ml-vision-image-label-model:18.0.0] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/89a5d59a9d20a3d1947d97e936817ca8/AndroidManifest.xml:5:5-44
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/6a0ed5f783559d5d2c3a1b10919cf91c/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/6a0ed5f783559d5d2c3a1b10919cf91c/AndroidManifest.xml:5:5-7:41
 MERGED from [com.google.android.gms:play-services-auth-base:17.0.0] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/be6d2ec4b9b302a64d9f09b063ca8f6f/AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-auth-base:17.0.0] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/be6d2ec4b9b302a64d9f09b063ca8f6f/AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-vision:18.0.0] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/3836e33062ee30d16cd83292978ed9f6/AndroidManifest.xml:5:5-44
@@ -343,11 +379,11 @@ INJECTED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidM
 		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml
 meta-data#android.support.FILE_PROVIDER_PATHS
-ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:38:13-40:54
+ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:39:13-41:54
 	android:resource
-		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:40:17-51
+		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:41:17-51
 	android:name
-		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:39:17-67
+		ADDED from /Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/AndroidManifest.xml:40:17-67
 service#com.google.firebase.components.ComponentDiscoveryService
 ADDED from [com.google.firebase:firebase-ml-common:20.0.1] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/fbf63400234740a96c1ffdfd56cccceb/AndroidManifest.xml:8:9-14:19
 MERGED from [com.google.android.gms:play-services-measurement-api:17.0.0] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/985975c2320a2cc403a4c1552e7233e0/AndroidManifest.xml:27:9-33:19
@@ -364,18 +400,6 @@ ADDED from [com.google.firebase:firebase-ml-common:20.0.1] /Users/sanadell/.grad
 		ADDED from [com.google.firebase:firebase-ml-common:20.0.1] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/fbf63400234740a96c1ffdfd56cccceb/AndroidManifest.xml:13:17-82
 	android:name
 		ADDED from [com.google.firebase:firebase-ml-common:20.0.1] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/fbf63400234740a96c1ffdfd56cccceb/AndroidManifest.xml:12:17-126
-uses-permission#android.permission.INTERNET
-ADDED from [com.google.android.gms:play-services-measurement-api:17.0.0] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/985975c2320a2cc403a4c1552e7233e0/AndroidManifest.xml:22:5-67
-MERGED from [com.google.firebase:firebase-iid:19.0.0] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/fb0ee6808f13827802c3d7c204df8d89/AndroidManifest.xml:23:5-67
-MERGED from [com.google.firebase:firebase-iid:19.0.0] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/fb0ee6808f13827802c3d7c204df8d89/AndroidManifest.xml:23:5-67
-MERGED from [com.google.android.gms:play-services-measurement:17.0.0] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/6c8cc1b39a61e053adeb7c441983c54a/AndroidManifest.xml:23:5-67
-MERGED from [com.google.android.gms:play-services-measurement:17.0.0] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/6c8cc1b39a61e053adeb7c441983c54a/AndroidManifest.xml:23:5-67
-MERGED from [com.google.android.gms:play-services-measurement-impl:17.0.0] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/e8438869b00b702d9b6bef6af9a1c246/AndroidManifest.xml:23:5-67
-MERGED from [com.google.android.gms:play-services-measurement-impl:17.0.0] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/e8438869b00b702d9b6bef6af9a1c246/AndroidManifest.xml:23:5-67
-MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.0.0] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/e26973953cf704854bdcf526918d6a55/AndroidManifest.xml:23:5-67
-MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.0.0] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/e26973953cf704854bdcf526918d6a55/AndroidManifest.xml:23:5-67
-	android:name
-		ADDED from [com.google.android.gms:play-services-measurement-api:17.0.0] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/985975c2320a2cc403a4c1552e7233e0/AndroidManifest.xml:22:22-64
 uses-permission#android.permission.ACCESS_NETWORK_STATE
 ADDED from [com.google.android.gms:play-services-measurement-api:17.0.0] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/985975c2320a2cc403a4c1552e7233e0/AndroidManifest.xml:23:5-79
 MERGED from [com.google.firebase:firebase-iid:19.0.0] /Users/sanadell/.gradle/caches/transforms-2/files-2.1/fb0ee6808f13827802c3d7c204df8d89/AndroidManifest.xml:22:5-79
