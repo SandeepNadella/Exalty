@@ -22,4 +22,7 @@
     <style name="LauncherTheme" parent="AppTheme">
         <item name="android:windowBackground">@drawable/bg_launcher</item>
     </style>
+    <style name="TextStyle" parent="TextAppearance.AppCompat">
+        <item name="android:textColorHint">@android:color/white</item>
+    </style>
 </resources>

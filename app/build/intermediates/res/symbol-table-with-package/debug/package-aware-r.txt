@@ -1092,6 +1092,7 @@ drawable design_password_eye
 drawable design_snackbar_background
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
+drawable ic_go_arrow
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable ic_mtrl_chip_checked_black
@@ -1112,6 +1113,7 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
+drawable text_input
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
 drawable widget_placeholder
@@ -1157,6 +1159,7 @@ id blocking
 id bottom
 id buttonPanel
 id captureSomeWorld
+id captureUserInputMood
 id captureYourWorld
 id center
 id center_horizontal
@@ -1882,6 +1885,7 @@ style TextAppearance_MaterialComponents_Tab
 style TextAppearance_Widget_AppCompat_ExpandedMenu_Item
 style TextAppearance_Widget_AppCompat_Toolbar_Subtitle
 style TextAppearance_Widget_AppCompat_Toolbar_Title
+style TextStyle
 style Theme_AppCompat
 style Theme_AppCompat_CompactMenu
 style Theme_AppCompat_DayNight

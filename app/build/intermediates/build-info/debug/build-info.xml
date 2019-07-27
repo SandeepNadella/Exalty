@@ -5,58 +5,28 @@
     build-mode="COLD"
     density="420dpi"
     format="10"
-    ir-eligibility="R_CLASS_CHANGE"
+    ir-eligibility="FIELD_REMOVED"
     plugin-version="3.4.2"
-    timestamp="1564177581405"
+    timestamp="1564204980626"
     token="-581738710924672087"
     verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
-        duration="453" />
+        duration="86" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="34" />
+        duration="24" />
     <task
         name="verifier"
-        duration="63" />
+        duration="8" />
 
-    <artifact
-        location="/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/resources/instant-run/debug/resources-debug.apk"
-        type="SPLIT" />
-    <artifact
-        location="/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/split-apk/debug/slices/slice_8.apk"
-        type="SPLIT" />
-    <artifact
-        location="/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/split-apk/debug/slices/slice_7.apk"
-        type="SPLIT" />
-    <artifact
-        location="/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/split-apk/debug/slices/slice_2.apk"
-        type="SPLIT" />
-    <artifact
-        location="/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/split-apk/debug/slices/slice_4.apk"
-        type="SPLIT" />
-    <artifact
-        location="/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/split-apk/debug/slices/slice_3.apk"
-        type="SPLIT" />
-    <artifact
-        location="/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/split-apk/debug/slices/slice_5.apk"
-        type="SPLIT" />
-    <artifact
-        location="/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/split-apk/debug/slices/slice_6.apk"
-        type="SPLIT" />
-    <artifact
-        location="/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/split-apk/debug/slices/slice_0.apk"
-        type="SPLIT" />
     <artifact
         location="/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/split-apk/debug/slices/slice_9.apk"
         type="SPLIT" />
-    <artifact
-        location="/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/instant-run-apk/debug/app-debug.apk"
-        type="SPLIT_MAIN" />
 
     <build
         build-mode="FULL"
@@ -104,20 +74,38 @@
     </build>
     <build
         build-mode="COLD"
-        ir-eligibility="R_CLASS_CHANGE"
-        timestamp="1564177581405"
+        ir-eligibility="CLASS_ADDED"
+        timestamp="1564197129885"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
-            location="/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/resources/instant-run/debug/resources-debug.apk"
+            location="/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/split-apk/debug/dep/dependencies.apk"
             type="SPLIT" />
         <artifact
-            location="/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/split-apk/debug/slices/slice_8.apk"
+            location="/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/split-apk/debug/slices/slice_1.apk"
             type="SPLIT" />
+        <artifact
+            location="/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/instant-run-apk/debug/app-debug.apk"
+            type="SPLIT_MAIN" />
+    </build>
+    <build
+        build-mode="COLD"
+        ir-eligibility="R_CLASS_CHANGE"
+        timestamp="1564202188155"
+        verifier="COLD_SWAP_REQUESTED" >
+        <artifact
+            location="/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/split-apk/debug/slices/slice_5.apk"
+            type="SPLIT" />
+    </build>
+    <build
+        build-mode="COLD"
+        ir-eligibility="R_CLASS_CHANGE"
+        timestamp="1564202977029"
+        verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/split-apk/debug/slices/slice_7.apk"
             type="SPLIT" />
         <artifact
-            location="/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/split-apk/debug/slices/slice_2.apk"
+            location="/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/split-apk/debug/slices/slice_8.apk"
             type="SPLIT" />
         <artifact
             location="/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/split-apk/debug/slices/slice_4.apk"
@@ -126,7 +114,7 @@
             location="/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/split-apk/debug/slices/slice_3.apk"
             type="SPLIT" />
         <artifact
-            location="/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/split-apk/debug/slices/slice_5.apk"
+            location="/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/split-apk/debug/slices/slice_2.apk"
             type="SPLIT" />
         <artifact
             location="/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/split-apk/debug/slices/slice_6.apk"
@@ -134,12 +122,23 @@
         <artifact
             location="/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/split-apk/debug/slices/slice_0.apk"
             type="SPLIT" />
+    </build>
+    <build
+        build-mode="COLD"
+        timestamp="1564204614085"
+        verifier="COLD_SWAP_REQUESTED" >
+        <artifact
+            location="/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/resources/instant-run/debug/resources-debug.apk"
+            type="SPLIT" />
+    </build>
+    <build
+        build-mode="COLD"
+        ir-eligibility="FIELD_REMOVED"
+        timestamp="1564204980626"
+        verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/split-apk/debug/slices/slice_9.apk"
             type="SPLIT" />
-        <artifact
-            location="/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/instant-run-apk/debug/app-debug.apk"
-            type="SPLIT_MAIN" />
     </build>
 
 </instant-run>

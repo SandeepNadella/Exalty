@@ -36,5 +36,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:filterTouchesWhenObscured="false" />
+    <EditText
+        android:id="@+id/captureUserInputMood"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_margin="5dp"
+        android:textColorHint="@color/cat_white_12_5"
+        android:ems="10"
+        android:hint="feeling happy"
+        android:ellipsize="start"
+        android:background="@drawable/text_input"
+        android:drawableRight="@drawable/ic_go_arrow"
+        android:backgroundTint="@android:color/white"
+        android:textColor="@android:color/white"
+        android:gravity="center"
+        android:singleLine="true">
+    </EditText>
   </LinearLayout>
 </RelativeLayout>

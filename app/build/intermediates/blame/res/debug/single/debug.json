@@ -324,6 +324,10 @@
         "source": "/Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/res/drawable/cat_button_large.xml"
     },
     {
+        "merged": "/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/res/merged/debug/drawable-xhdpi_ic_go_arrow.png.flat",
+        "source": "/Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/res/drawable-xhdpi/ic_go_arrow.png"
+    },
+    {
         "merged": "/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_abc_scrubber_control_off_mtrl_alpha.png.flat",
         "source": "/Users/sanadell/.gradle/caches/transforms-2/files-2.1/c330372d03dfa776127f3a627c1ab17b/res/drawable-xxhdpi-v4/abc_scrubber_control_off_mtrl_alpha.png"
     },
@@ -338,6 +342,10 @@
     {
         "merged": "/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/res/merged/debug/color_abc_search_url_text.xml.flat",
         "source": "/Users/sanadell/.gradle/caches/transforms-2/files-2.1/c330372d03dfa776127f3a627c1ab17b/res/color/abc_search_url_text.xml"
+    },
+    {
+        "merged": "/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/res/merged/debug/drawable-hdpi_ic_go_arrow.png.flat",
+        "source": "/Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/res/drawable-hdpi/ic_go_arrow.png"
     },
     {
         "merged": "/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_googleg_standard_color_18.png.flat",
@@ -1088,6 +1096,10 @@
         "source": "/Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/res/mipmap-xxhdpi/ic_shuffle.png"
     },
     {
+        "merged": "/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/res/merged/debug/drawable-anydpi_ic_go_arrow.xml.flat",
+        "source": "/Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/res/drawable-anydpi/ic_go_arrow.xml"
+    },
+    {
         "merged": "/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/res/merged/debug/layout_abc_tooltip.xml.flat",
         "source": "/Users/sanadell/.gradle/caches/transforms-2/files-2.1/c330372d03dfa776127f3a627c1ab17b/res/layout/abc_tooltip.xml"
     },
@@ -1146,6 +1158,10 @@
     {
         "merged": "/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/res/merged/debug/drawable-xxxhdpi-v4_abc_scrubber_control_to_pressed_mtrl_000.png.flat",
         "source": "/Users/sanadell/.gradle/caches/transforms-2/files-2.1/c330372d03dfa776127f3a627c1ab17b/res/drawable-xxxhdpi-v4/abc_scrubber_control_to_pressed_mtrl_000.png"
+    },
+    {
+        "merged": "/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/res/merged/debug/drawable-mdpi_ic_go_arrow.png.flat",
+        "source": "/Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/res/drawable-mdpi/ic_go_arrow.png"
     },
     {
         "merged": "/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_abc_scrubber_primary_mtrl_alpha.9.png.flat",
@@ -1808,6 +1824,10 @@
         "source": "/Users/sanadell/.gradle/caches/transforms-2/files-2.1/e926036b569a6acdc091b3f5ce8734ae/res/anim-v21/design_bottom_sheet_slide_in.xml"
     },
     {
+        "merged": "/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/res/merged/debug/drawable_text_input.xml.flat",
+        "source": "/Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/res/drawable/text_input.xml"
+    },
+    {
         "merged": "/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_abc_list_pressed_holo_light.9.png.flat",
         "source": "/Users/sanadell/.gradle/caches/transforms-2/files-2.1/c330372d03dfa776127f3a627c1ab17b/res/drawable-xxhdpi-v4/abc_list_pressed_holo_light.9.png"
     },
@@ -1982,6 +2002,10 @@
     {
         "merged": "/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/res/merged/debug/drawable_abc_item_background_holo_dark.xml.flat",
         "source": "/Users/sanadell/.gradle/caches/transforms-2/files-2.1/c330372d03dfa776127f3a627c1ab17b/res/drawable/abc_item_background_holo_dark.xml"
+    },
+    {
+        "merged": "/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/res/merged/debug/drawable-xxhdpi_ic_go_arrow.png.flat",
+        "source": "/Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/res/drawable-xxhdpi/ic_go_arrow.png"
     },
     {
         "merged": "/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/res/merged/debug/drawable_ic_mtrl_chip_close_circle.xml.flat",

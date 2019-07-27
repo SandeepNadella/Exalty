@@ -2,6 +2,7 @@ package com.rekam.exalty;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,16 +15,17 @@ import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.CalendarContract;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 
@@ -41,12 +43,14 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_PERMISSION_STORAGE = 101;
     private static final int REQUEST_PERMISSION_CAMERA = 1001;
+    private static final int REQUEST_PERMISSION_CALENDAR = 1002;
     private static final int RC_SELECT_PICTURE = 103;
     private static final int RC_CAPTURE_IMAGE = 1;
     private Bitmap mBitmap;
@@ -57,14 +61,17 @@ public class MainActivity extends AppCompatActivity {
         Snackbar.make(view, "Something went wrong", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
     }
+
     private void showError() {
         Snackbar.make(findViewById(R.id.appRelativeLayout), "Something went wrong", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
     }
+
     private void showError(String msg) {
         Snackbar.make(findViewById(R.id.appRelativeLayout), msg, Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,18 +97,95 @@ public class MainActivity extends AppCompatActivity {
                 checkStoragePermission(REQUEST_PERMISSION_STORAGE);
             }
         });
+
+        findViewById(R.id.surprise).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkCalendarPermission(REQUEST_PERMISSION_CALENDAR);
+            }
+        });
+
+        final EditText edittext = (EditText) findViewById(R.id.captureUserInputMood);
+        edittext.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                // If the event is a key-down event on the "enter" button
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+                        (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    startPlaylistRecommendation(edittext.getText().toString());
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        edittext.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                final int DRAWABLE_RIGHT = 2;
+                //check if icon is clicked
+                if(event.getAction() == MotionEvent.ACTION_UP) {
+                    if(event.getRawX() >= (edittext.getRight() - edittext.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                        startPlaylistRecommendation(edittext.getText().toString());
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
     }
 
-    private void startPlaylistRecommendation(List<FirebaseVisionImageLabel> labels) {
-
+    private void startPlaylistRecommendation(List<?> labels) {
         Intent playerIntent = new Intent(MainActivity.this, RemotePlayerActivity.class);
         List<String> labelsStr = new ArrayList<>();
-        for (FirebaseVisionImageLabel label : labels) {
-            Log.println(Log.DEBUG, "ML Kit", "Label: "+label.getText()+" Confidence: "+label.getConfidence());
-            labelsStr.add(label.getText());
+        if(!labels.isEmpty()) {
+            if (labels.get(0) instanceof FirebaseVisionImageLabel) {
+                for (FirebaseVisionImageLabel label : (List<FirebaseVisionImageLabel>) labels) {
+                    Log.println(Log.DEBUG, "ML Kit", "Label: " + label.getText() + " Confidence: " + label.getConfidence());
+                    labelsStr.add(label.getText());
+                }
+            } else {
+                labelsStr = (List<String>) labels;
+            }
+            playerIntent.putStringArrayListExtra("labels", (ArrayList<String>) labelsStr);
+            MainActivity.this.startActivity(playerIntent);
         }
-        playerIntent.putStringArrayListExtra("labels", (ArrayList<String>) labelsStr);
+    }
+
+    private void startPlaylistRecommendation(String mood) {
+        Intent playerIntent = new Intent(MainActivity.this, RemotePlayerActivity.class);
+        playerIntent.putExtra("mood", mood);
+        Log.println(Log.DEBUG, "User Input", "Mood: " + mood);
         MainActivity.this.startActivity(playerIntent);
+    }
+
+    public static final String[] EVENT_PROJECTION = new String[]{
+            CalendarContract.EventsEntity.TITLE
+    };
+
+    private List<String> readCalendarEvents() {
+        Calendar currentTime = Calendar.getInstance();
+        List<String> events = new ArrayList<>();
+        Calendar beginTime = Calendar.getInstance();
+        beginTime.set(currentTime.get(Calendar.YEAR), currentTime.get(Calendar.MONTH), currentTime.get(Calendar.DATE), 0, 0);
+        Calendar endTime = Calendar.getInstance();
+        endTime.set(currentTime.get(Calendar.YEAR), currentTime.get(Calendar.MONTH), currentTime.get(Calendar.DATE), 23, 59);
+        Cursor cur = null;
+        ContentResolver cr = getContentResolver();
+        Uri uri = CalendarContract.EventsEntity.CONTENT_URI;
+        String selection = "((" + CalendarContract.Events.DTSTART + " >= ?) AND ("
+                + CalendarContract.Events.DTSTART + " <= ?) AND (deleted != 1 ))";
+        String[] selectionArgs = new String[]{Long.toString(beginTime.getTimeInMillis()), Long.toString(endTime.getTimeInMillis())};
+        // Submit the query and get a Cursor object back.
+        cur = cr.query(uri, EVENT_PROJECTION, selection, selectionArgs, null);
+        while (cur.moveToNext()) {
+            String eventTitle;
+
+            // Get the field values
+            eventTitle = cur.getString(0);
+            Log.println(Log.DEBUG, "Calendar", "Event Display Name: " + eventTitle);
+            events.add(eventTitle);
+        }
+        return events;
     }
 
     private void checkStoragePermission(int requestCode) {
@@ -126,6 +210,20 @@ public class MainActivity extends AppCompatActivity {
                     issueCameraIntent();
                 } else {
                     ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, requestCode);
+                }
+                break;
+        }
+    }
+
+    private void checkCalendarPermission(int requestCode) {
+        switch (requestCode) {
+            case REQUEST_PERMISSION_CALENDAR:
+                int hasCameraPermission = ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_CALENDAR);
+                if (hasCameraPermission == PackageManager.PERMISSION_GRANTED) {
+                    List<String> events = readCalendarEvents();
+                    startPlaylistRecommendation(events);
+                } else {
+                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_CALENDAR}, requestCode);
                 }
                 break;
         }
@@ -169,8 +267,16 @@ public class MainActivity extends AppCompatActivity {
                 if (grantResults[0] ==
                         PackageManager.PERMISSION_GRANTED) {
                     issueCameraIntent();
-                    break;
+
                 }
+                break;
+            case REQUEST_PERMISSION_CALENDAR:
+                if (grantResults[0] ==
+                        PackageManager.PERMISSION_GRANTED) {
+                    List<String> events = readCalendarEvents();
+                    startPlaylistRecommendation(events);
+                }
+                break;
             default:
                 break;
         }
@@ -215,7 +321,7 @@ public class MainActivity extends AppCompatActivity {
                     checkCameraPermission(REQUEST_PERMISSION_CAMERA);
                     break;
                 case RC_SELECT_PICTURE:
-                    processImage(getPath(this.getApplicationContext( ), data.getData()));
+                    processImage(getPath(this.getApplicationContext(), data.getData()));
                     break;
                 case RC_CAPTURE_IMAGE:
                     processImage(mCurrentPhotoPath);
@@ -224,18 +330,18 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private static String getPath(Context context, Uri uri ) {
+    private static String getPath(Context context, Uri uri) {
         String result = null;
-        String[] proj = { MediaStore.Images.Media.DATA };
-        Cursor cursor = context.getContentResolver( ).query( uri, proj, null, null, null );
-        if(cursor != null){
-            if ( cursor.moveToFirst( ) ) {
-                int column_index = cursor.getColumnIndexOrThrow( proj[0] );
-                result = cursor.getString( column_index );
+        String[] proj = {MediaStore.Images.Media.DATA};
+        Cursor cursor = context.getContentResolver().query(uri, proj, null, null, null);
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                int column_index = cursor.getColumnIndexOrThrow(proj[0]);
+                result = cursor.getString(column_index);
             }
-            cursor.close( );
+            cursor.close();
         }
-        if(result == null) {
+        if (result == null) {
             result = "Not found";
         }
         return result;
@@ -250,7 +356,7 @@ public class MainActivity extends AppCompatActivity {
         bmOptions.inJustDecodeBounds = false;
         bmOptions.inPurgeable = true;
         mBitmap = BitmapFactory.decodeFile(imagePath, bmOptions);
-        if (mBitmap!=null && imagePath != null) {
+        if (mBitmap != null && imagePath != null) {
             ExifInterface ei = null;
             try {
                 ei = new ExifInterface(imagePath);
