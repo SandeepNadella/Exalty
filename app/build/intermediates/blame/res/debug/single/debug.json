@@ -320,12 +320,12 @@
         "source": "/Users/sanadell/.gradle/caches/transforms-2/files-2.1/e926036b569a6acdc091b3f5ce8734ae/res/animator/mtrl_fab_hide_motion_spec.xml"
     },
     {
-        "merged": "/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/res/merged/debug/drawable_cat_button_large.xml.flat",
-        "source": "/Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/res/drawable/cat_button_large.xml"
-    },
-    {
         "merged": "/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/res/merged/debug/drawable-xhdpi_ic_go_arrow.png.flat",
         "source": "/Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/res/drawable-xhdpi/ic_go_arrow.png"
+    },
+    {
+        "merged": "/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/res/merged/debug/drawable_cat_button_large.xml.flat",
+        "source": "/Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/res/drawable/cat_button_large.xml"
     },
     {
         "merged": "/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_abc_scrubber_control_off_mtrl_alpha.png.flat",
@@ -522,6 +522,10 @@
     {
         "merged": "/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/res/merged/debug/drawable-xxxhdpi-v4_abc_btn_radio_to_on_mtrl_000.png.flat",
         "source": "/Users/sanadell/.gradle/caches/transforms-2/files-2.1/c330372d03dfa776127f3a627c1ab17b/res/drawable-xxxhdpi-v4/abc_btn_radio_to_on_mtrl_000.png"
+    },
+    {
+        "merged": "/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/res/merged/debug/layout_browser_actions_context_menu_row.xml.flat",
+        "source": "/Users/sanadell/.gradle/caches/transforms-2/files-2.1/3ebec430cfd3cd6367feb5c13b02de4c/res/layout/browser_actions_context_menu_row.xml"
     },
     {
         "merged": "/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/res/merged/debug/layout_abc_activity_chooser_view_list_item.xml.flat",
@@ -1028,6 +1032,10 @@
         "source": "/Users/sanadell/.gradle/caches/transforms-2/files-2.1/e926036b569a6acdc091b3f5ce8734ae/res/color/mtrl_chip_ripple_color.xml"
     },
     {
+        "merged": "/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/res/merged/debug/layout_com_spotify_sdk_login_activity.xml.flat",
+        "source": "/Users/sanadell/.gradle/caches/transforms-2/files-2.1/07ba1fa559ed4e07336edbef5b32a2ef/res/layout/com_spotify_sdk_login_activity.xml"
+    },
+    {
         "merged": "/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_abc_ic_star_black_48dp.png.flat",
         "source": "/Users/sanadell/.gradle/caches/transforms-2/files-2.1/c330372d03dfa776127f3a627c1ab17b/res/drawable-hdpi-v4/abc_ic_star_black_48dp.png"
     },
@@ -1072,12 +1080,12 @@
         "source": "/Users/sanadell/.gradle/caches/transforms-2/files-2.1/c330372d03dfa776127f3a627c1ab17b/res/layout-watch-v20/abc_alert_dialog_title_material.xml"
     },
     {
-        "merged": "/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/res/merged/debug/animator_design_fab_show_motion_spec.xml.flat",
-        "source": "/Users/sanadell/.gradle/caches/transforms-2/files-2.1/e926036b569a6acdc091b3f5ce8734ae/res/animator/design_fab_show_motion_spec.xml"
-    },
-    {
         "merged": "/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/res/merged/debug/drawable_cat_button_large_state_checked.xml.flat",
         "source": "/Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/res/drawable/cat_button_large_state_checked.xml"
+    },
+    {
+        "merged": "/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/res/merged/debug/animator_design_fab_show_motion_spec.xml.flat",
+        "source": "/Users/sanadell/.gradle/caches/transforms-2/files-2.1/e926036b569a6acdc091b3f5ce8734ae/res/animator/design_fab_show_motion_spec.xml"
     },
     {
         "merged": "/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/res/merged/debug/anim_abc_grow_fade_in_from_bottom.xml.flat",
@@ -1152,16 +1160,16 @@
         "source": "/Users/sanadell/.gradle/caches/transforms-2/files-2.1/e2817f3cba69e911b13d2c43b9663d22/res/color/common_google_signin_btn_tint.xml"
     },
     {
+        "merged": "/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/res/merged/debug/drawable-mdpi_ic_go_arrow.png.flat",
+        "source": "/Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/res/drawable-mdpi/ic_go_arrow.png"
+    },
+    {
         "merged": "/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/res/merged/debug/drawable_common_google_signin_btn_icon_dark_normal.xml.flat",
         "source": "/Users/sanadell/.gradle/caches/transforms-2/files-2.1/e2817f3cba69e911b13d2c43b9663d22/res/drawable/common_google_signin_btn_icon_dark_normal.xml"
     },
     {
         "merged": "/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/res/merged/debug/drawable-xxxhdpi-v4_abc_scrubber_control_to_pressed_mtrl_000.png.flat",
         "source": "/Users/sanadell/.gradle/caches/transforms-2/files-2.1/c330372d03dfa776127f3a627c1ab17b/res/drawable-xxxhdpi-v4/abc_scrubber_control_to_pressed_mtrl_000.png"
-    },
-    {
-        "merged": "/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/res/merged/debug/drawable-mdpi_ic_go_arrow.png.flat",
-        "source": "/Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/res/drawable-mdpi/ic_go_arrow.png"
     },
     {
         "merged": "/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_abc_scrubber_primary_mtrl_alpha.9.png.flat",
@@ -1466,6 +1474,10 @@
     {
         "merged": "/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/res/merged/debug/drawable_abc_ic_clear_material.xml.flat",
         "source": "/Users/sanadell/.gradle/caches/transforms-2/files-2.1/c330372d03dfa776127f3a627c1ab17b/res/drawable/abc_ic_clear_material.xml"
+    },
+    {
+        "merged": "/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/res/merged/debug/layout_browser_actions_context_menu_page.xml.flat",
+        "source": "/Users/sanadell/.gradle/caches/transforms-2/files-2.1/3ebec430cfd3cd6367feb5c13b02de4c/res/layout/browser_actions_context_menu_page.xml"
     },
     {
         "merged": "/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/res/merged/debug/drawable_cat_button_large_state_default.xml.flat",
@@ -1820,12 +1832,12 @@
         "source": "/Users/sanadell/.gradle/caches/transforms-2/files-2.1/c330372d03dfa776127f3a627c1ab17b/res/drawable-hdpi-v4/abc_ab_share_pack_mtrl_alpha.9.png"
     },
     {
-        "merged": "/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/res/merged/debug/anim-v21_design_bottom_sheet_slide_in.xml.flat",
-        "source": "/Users/sanadell/.gradle/caches/transforms-2/files-2.1/e926036b569a6acdc091b3f5ce8734ae/res/anim-v21/design_bottom_sheet_slide_in.xml"
-    },
-    {
         "merged": "/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/res/merged/debug/drawable_text_input.xml.flat",
         "source": "/Users/sanadell/AndroidStudioProjects/Exalty/app/src/main/res/drawable/text_input.xml"
+    },
+    {
+        "merged": "/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/res/merged/debug/anim-v21_design_bottom_sheet_slide_in.xml.flat",
+        "source": "/Users/sanadell/.gradle/caches/transforms-2/files-2.1/e926036b569a6acdc091b3f5ce8734ae/res/anim-v21/design_bottom_sheet_slide_in.xml"
     },
     {
         "merged": "/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_abc_list_pressed_holo_light.9.png.flat",
@@ -1906,6 +1918,10 @@
     {
         "merged": "/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/res/merged/debug/color-v23_abc_tint_spinner.xml.flat",
         "source": "/Users/sanadell/.gradle/caches/transforms-2/files-2.1/c330372d03dfa776127f3a627c1ab17b/res/color-v23/abc_tint_spinner.xml"
+    },
+    {
+        "merged": "/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/res/merged/debug/layout_com_spotify_sdk_login_dialog.xml.flat",
+        "source": "/Users/sanadell/.gradle/caches/transforms-2/files-2.1/07ba1fa559ed4e07336edbef5b32a2ef/res/layout/com_spotify_sdk_login_dialog.xml"
     },
     {
         "merged": "/Users/sanadell/AndroidStudioProjects/Exalty/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_abc_scrubber_primary_mtrl_alpha.9.png.flat",
