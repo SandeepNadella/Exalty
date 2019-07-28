@@ -7,6 +7,15 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MainActivity"
     tools:showIn="@layout/activity_main">
+
+  <TextView
+      android:layout_width="match_parent"
+      android:layout_height="96dp"
+      android:fontFamily="sans-serif-thin"
+      android:gravity="center"
+      android:text="@string/app_name"
+      android:textColor="@color/cat_white"
+      android:textSize="50dp" />
   <LinearLayout
       android:id="@+id/appRelativeLayout"
       android:layout_width="match_parent"
@@ -19,6 +28,7 @@
         style="@style/Widget.Cat.Button.Large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:filterTouchesWhenObscured="false"/>
     <Button
         android:id="@+id/captureYourWorld"
@@ -26,6 +36,7 @@
         android:text="@string/cam_txt"
         style="@style/Widget.Cat.Button.Large"
         android:layout_width="wrap_content"
+        android:layout_margin="10dp"
         android:layout_height="wrap_content"
         android:filterTouchesWhenObscured="false" />
     <Button
@@ -34,17 +45,18 @@
         android:layout_below="@id/captureYourWorld"
         style="@style/Widget.Cat.Button.Large"
         android:layout_width="wrap_content"
+        android:layout_margin="10dp"
         android:layout_height="wrap_content"
         android:filterTouchesWhenObscured="false" />
     <EditText
         android:id="@+id/captureUserInputMood"
         android:layout_width="300dp"
         android:layout_height="40dp"
-        android:layout_margin="5dp"
         android:textColorHint="@color/cat_white_12_5"
         android:ems="10"
         android:hint="feeling happy"
         android:ellipsize="start"
+        android:layout_margin="10dp"
         android:background="@drawable/text_input"
         android:drawableRight="@drawable/ic_go_arrow"
         android:backgroundTint="@android:color/white"

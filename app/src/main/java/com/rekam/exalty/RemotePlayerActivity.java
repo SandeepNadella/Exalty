@@ -38,6 +38,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.AppCompatImageButton;
@@ -103,14 +104,11 @@ public class RemotePlayerActivity extends FragmentActivity {
     private static final String CLIENT_ID = "c68326b3dac74bc99cb02bc90019a7eb";
     private static final String REDIRECT_URI = "rekamspotify://callback";
 
-    private static final String TRACK_URI = "spotify:track:4IWZsfEkaK49itBwCTFDXQ";
-
     private static SpotifyAppRemote mSpotifyAppRemote;
 
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     ImageView mCoverArtImageView;
-    AppCompatTextView mImageScaleTypeLabel;
     AppCompatImageButton mToggleShuffleButton;
     AppCompatImageButton mPlayPauseButton;
     AppCompatImageButton mToggleRepeatButton;
@@ -118,6 +116,7 @@ public class RemotePlayerActivity extends FragmentActivity {
     Button mPlayerStateButton;
     private static List<String> mLabels = new ArrayList<>();
     private static List<String> mUris = new ArrayList<>();
+    private static List<String> mNames = new ArrayList<>();
     private static String mMood;
     List<View> mViews;
     TrackProgressBar mTrackProgressBar;
@@ -127,6 +126,7 @@ public class RemotePlayerActivity extends FragmentActivity {
         @Override
         public void onError(Throwable throwable) {
             RemotePlayerActivity.this.logError(throwable, "Something went wrong...");
+            Log.println(Log.ERROR,"ErrorCallback",throwable.getMessage());
         }
     };
 
@@ -147,12 +147,12 @@ public class RemotePlayerActivity extends FragmentActivity {
                 .setLifecycleCallback(new Subscription.LifecycleCallback() {
                     @Override
                     public void onStart() {
-                        logMessage("Event: start");
+                        //logMessage("Event: start");
                     }
 
                     @Override
                     public void onStop() {
-                        logMessage("Event: end");
+//                        logMessage("Event: end");
                     }
                 })
                 .setErrorCallback(throwable -> {
@@ -206,9 +206,9 @@ public class RemotePlayerActivity extends FragmentActivity {
 
             // Invalidate play / pause
             if (playerState.isPaused) {
-                mPlayPauseButton.setImageResource(R.drawable.btn_play);
+                mPlayPauseButton.setImageResource(R.drawable.ic_play);
             } else {
-                mPlayPauseButton.setImageResource(R.drawable.btn_pause);
+                mPlayPauseButton.setImageResource(R.drawable.ic_pause);
             }
 
             // Get image from track
@@ -409,12 +409,37 @@ public class RemotePlayerActivity extends FragmentActivity {
                 .setResultCallback(new CallResult.ResultCallback<Empty>() {
                     @Override
                     public void onResult(Empty empty) {
-                        RemotePlayerActivity.this.logMessage("Play successful");
+//                        RemotePlayerActivity.this.logMessage("Play successful");
                     }
                 })
                 .setErrorCallback(mErrorCallback);
     }
 
+    private void playUri(String uri, String name) {
+        mSpotifyAppRemote.getPlayerApi()
+                .play(uri)
+                .setResultCallback(new CallResult.ResultCallback<Empty>() {
+                    @Override
+                    public void onResult(Empty empty) {
+//                        RemotePlayerActivity.this.logMessage("Playing "+name);
+                        showSnackBar(null, "Playing "+name);
+                    }
+                })
+                .setErrorCallback(mErrorCallback);
+    }
+
+    private void playUris(List<String> uris, List<String> names) {
+        if(!uris.isEmpty()) {
+            Log.println(Log.ERROR,"PlayURI",uris.get(0));
+            playUri(uris.get(0), names.get(0));
+            if(uris.size()>1) {
+                for (int i=1;i<uris.size();i++) {
+                    Log.println(Log.ERROR,"QueueURI",uris.get(i));
+                    queueUri(uris.get(i));
+                }
+            }
+        }
+    }
     private void playUris(List<String> uris) {
         if(!uris.isEmpty()) {
             Log.println(Log.ERROR,"PlayURI",uris.get(0));
@@ -427,7 +452,6 @@ public class RemotePlayerActivity extends FragmentActivity {
             }
         }
     }
-
     private void queueUris(List<String> uris) {
         if(!uris.isEmpty()) {
                 for (int i=0;i<uris.size();i++) {
@@ -443,7 +467,7 @@ public class RemotePlayerActivity extends FragmentActivity {
                 .setResultCallback(new CallResult.ResultCallback<Empty>() {
                     @Override
                     public void onResult(Empty empty) {
-                        RemotePlayerActivity.this.logMessage("Play successful");
+//                        RemotePlayerActivity.this.logMessage("Play successful");
                     }
                 })
                 .setErrorCallback(mErrorCallback);
@@ -455,7 +479,7 @@ public class RemotePlayerActivity extends FragmentActivity {
                 .setResultCallback(new CallResult.ResultCallback<Empty>() {
                     @Override
                     public void onResult(Empty empty) {
-                        RemotePlayerActivity.this.logMessage("Toggle shuffle successful");
+//                        RemotePlayerActivity.this.logMessage("Toggle shuffle successful");
                     }
                 })
                 .setErrorCallback(mErrorCallback);
@@ -467,7 +491,7 @@ public class RemotePlayerActivity extends FragmentActivity {
                 .setResultCallback(new CallResult.ResultCallback<Empty>() {
                     @Override
                     public void onResult(Empty empty) {
-                        RemotePlayerActivity.this.logMessage("Toggle repeat successful");
+//                        RemotePlayerActivity.this.logMessage("Toggle repeat successful");
                     }
                 })
                 .setErrorCallback(mErrorCallback);
@@ -479,7 +503,7 @@ public class RemotePlayerActivity extends FragmentActivity {
                 .setResultCallback(new CallResult.ResultCallback<Empty>() {
                     @Override
                     public void onResult(Empty empty) {
-                        RemotePlayerActivity.this.logMessage("Set shuffle true successful");
+//                        RemotePlayerActivity.this.logMessage("Set shuffle true successful");
                     }
                 })
                 .setErrorCallback(mErrorCallback);
@@ -491,7 +515,7 @@ public class RemotePlayerActivity extends FragmentActivity {
                 .setResultCallback(new CallResult.ResultCallback<Empty>() {
                     @Override
                     public void onResult(Empty empty) {
-                        RemotePlayerActivity.this.logMessage("Set repeat ALL successful");
+//                        RemotePlayerActivity.this.logMessage("Set repeat ALL successful");
                     }
                 })
                 .setErrorCallback(mErrorCallback);
@@ -503,7 +527,7 @@ public class RemotePlayerActivity extends FragmentActivity {
                 .setResultCallback(new CallResult.ResultCallback<Empty>() {
                     @Override
                     public void onResult(Empty empty) {
-                        RemotePlayerActivity.this.logMessage("Skip previous successful");
+//                        RemotePlayerActivity.this.logMessage("Skip previous successful");
                     }
                 })
                 .setErrorCallback(mErrorCallback);
@@ -519,7 +543,7 @@ public class RemotePlayerActivity extends FragmentActivity {
                             .setResultCallback(new CallResult.ResultCallback<Empty>() {
                                 @Override
                                 public void onResult(Empty empty) {
-                                    RemotePlayerActivity.this.logMessage("Play current track successful");
+//                                    RemotePlayerActivity.this.logMessage("Play current track successful");
                                 }
                             })
                             .setErrorCallback(mErrorCallback);
@@ -529,7 +553,7 @@ public class RemotePlayerActivity extends FragmentActivity {
                             .setResultCallback(new CallResult.ResultCallback<Empty>() {
                                 @Override
                                 public void onResult(Empty empty) {
-                                    RemotePlayerActivity.this.logMessage("Pause successful");
+//                                    RemotePlayerActivity.this.logMessage("Pause successful");
                                 }
                             })
                             .setErrorCallback(mErrorCallback);
@@ -544,7 +568,7 @@ public class RemotePlayerActivity extends FragmentActivity {
                 .setResultCallback(new CallResult.ResultCallback<Empty>() {
                     @Override
                     public void onResult(Empty data) {
-                        RemotePlayerActivity.this.logMessage("Skip next successful");
+//                        RemotePlayerActivity.this.logMessage("Skip next successful");
                     }
                 })
                 .setErrorCallback(mErrorCallback);
@@ -556,7 +580,7 @@ public class RemotePlayerActivity extends FragmentActivity {
                 .setResultCallback(new CallResult.ResultCallback<Empty>() {
                     @Override
                     public void onResult(Empty data) {
-                        RemotePlayerActivity.this.logMessage("Seek back 15 sec successful");
+//                        RemotePlayerActivity.this.logMessage("Seek back 15 sec successful");
                     }
                 })
                 .setErrorCallback(mErrorCallback);
@@ -568,7 +592,7 @@ public class RemotePlayerActivity extends FragmentActivity {
                 .setResultCallback(new CallResult.ResultCallback<Empty>() {
                     @Override
                     public void onResult(Empty data) {
-                        RemotePlayerActivity.this.logMessage("Seek forward 15 sec successful");
+//                        RemotePlayerActivity.this.logMessage("Seek forward 15 sec successful");
                     }
                 })
                 .setErrorCallback(mErrorCallback);
@@ -585,7 +609,7 @@ public class RemotePlayerActivity extends FragmentActivity {
                             for (int i = 0; i < childListItems.items.length; ++i) {
                                 item = childListItems.items[i];
                                 if (item.playable) {
-                                    logMessage(String.format("Trying to play %s", item.title));
+//                                    logMessage(String.format("Trying to play %s", item.title));
                                     break;
                                 } else {
                                     item = null;
@@ -596,7 +620,7 @@ public class RemotePlayerActivity extends FragmentActivity {
     }
 
     private void logError(Throwable throwable, String msg) {
-        Toast.makeText(this, "Error: " + msg, Toast.LENGTH_SHORT).show();
+        // Toast.makeText(this, "Error: " + msg, Toast.LENGTH_SHORT).show();
         Log.e(TAG, msg, throwable);
     }
 
@@ -633,7 +657,12 @@ public class RemotePlayerActivity extends FragmentActivity {
         menu.setOnMenuItemClickListener(item -> {
             mSpotifyAppRemote.getPlayerApi()
                     .setPodcastPlaybackSpeed(PlaybackSpeed.PodcastPlaybackSpeed.values()[item.getOrder()])
-                    .setResultCallback(empty -> logMessage("Play podcast successful"))
+                    .setResultCallback(new CallResult.ResultCallback<Empty>() {
+                        @Override
+                        public void onResult(Empty empty) {
+//                            RemotePlayerActivity.this.logMessage("Play podcast successful");
+                        }
+                    })
                     .setErrorCallback(mErrorCallback);
             return false;
         });
@@ -713,9 +742,16 @@ public class RemotePlayerActivity extends FragmentActivity {
             if(view == null) {
                view = findViewById(R.id.app_remote_layout);
             }
-            final Snackbar snackbar = Snackbar.make(view, msg, Snackbar.LENGTH_LONG);
-            snackbar.getView().setBackgroundColor(ContextCompat.getColor(this, R.color.colorAccent));
-            snackbar.show();
+            final Snackbar snackbar = Snackbar.make(view, msg, 6000);
+            snackbar.getView().setBackgroundColor(ContextCompat.getColor(this, R.color.snackBarBackground));
+            TextView tv = (TextView) snackbar.getView().findViewById(com.google.android.material.R.id.snackbar_text);
+            tv.setTextColor(Color.DKGRAY);
+            if(snackbar.isShown()) {
+                snackbar.dismiss();
+                snackbar.show();
+            } else {
+                snackbar.show();
+            }
     }
 
     private void getUserProfileAndStartSearch() {
@@ -741,8 +777,14 @@ public class RemotePlayerActivity extends FragmentActivity {
                 try {
                     final JSONObject jsonObject = new JSONObject(response.body().string());
                     Log.println(Log.ERROR, "Response",jsonObject.toString());
-                    showSnackBar(null, "Welcome "+jsonObject.getString("display_name"));
-                    getSpotifyUris(mLabels);
+//                    RemotePlayerActivity.this.logMessage("Welcome "+jsonObject.getString("display_name"));
+                    if(mMood!=null) {
+                        List<String> li = new ArrayList<>();
+                        li.add(mMood);
+                        getSpotifyUris(li);
+                    } else {
+                        getSpotifyUris(mLabels);
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                     Log.println(Log.DEBUG, "Content", response.body().string());
@@ -753,12 +795,28 @@ public class RemotePlayerActivity extends FragmentActivity {
     }
 
     private void getSpotifyUris(List<String> labels) {
+        mUris.clear();
+        mNames.clear();
         if (mAccessToken == null) {
             showSnackBar(null, "Access token is required");
         }
-        for (String label:labels) {
-            String encLabel = label;
-            String q = "?q="+ encLabel +"&type=playlist";
+        String encLabel = "";
+        String q = "";
+        for(int i=0;i<labels.size();i++) {
+            String label = labels.get(i);
+            if(i==0) {
+                encLabel = label.replace(" ", "+");
+                // Searching for only one improves accuracy
+                break;
+            } else if(i==1) {
+                encLabel += " OR "+label;
+                break;
+            }else{
+                //This is not used since Spotify doesn't support more than 2 words in search
+                encLabel += " OR "+label;
+            }
+        }
+        q = "?q=" + encLabel + "&type=playlist";
             final Request request = new Request.Builder()
                     .url("https://api.spotify.com/v1/search"+q)
                     .addHeader("Authorization", "Bearer " + mAccessToken)
@@ -787,13 +845,16 @@ public class RemotePlayerActivity extends FragmentActivity {
                                     JSONArray items = tracks.getJSONArray("items");
                                     for (int i = 0; i < items.length(); i++) {
                                         String uri = ((JSONObject) items.get(0)).getString("uri");
+                                        String name = ((JSONObject) items.get(0)).getString("name");
                                         mUris.add(uri);
+                                        mNames.add(name);
+                                        //play only most popular playlist for now
                                         break;
                                     }
                                 }
                             }
                         }
-                        playUris(mUris);
+                        playUris(mUris,mNames);
                         finishActivity(RESULT_OK);
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -802,7 +863,6 @@ public class RemotePlayerActivity extends FragmentActivity {
                     }
                 }
             });
-        }
     }
 
     public void onRequestCodeClicked() {

@@ -2,5 +2,6 @@
 <resources>
     <color name="colorPrimary">@android:color/transparent</color>
     <color name="colorPrimaryDark">#757575</color>
-    <color name="colorAccent">#E0E0E0</color>
+    <color name="colorAccent">#16b851</color>
+    <color name="snackBarBackground">#F5F5F5</color>
 </resources>
