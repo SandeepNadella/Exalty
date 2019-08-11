@@ -2,6 +2,7 @@ package com.rekam.exalty;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.app.PendingIntent;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -11,6 +12,9 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
@@ -23,14 +27,22 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 
+import com.google.android.gms.location.ActivityRecognition;
+import com.google.android.gms.location.ActivityTransition;
+import com.google.android.gms.location.ActivityTransitionRequest;
+import com.google.android.gms.location.DetectedActivity;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.ml.vision.FirebaseVision;
@@ -39,13 +51,19 @@ import com.google.firebase.ml.vision.label.FirebaseVisionImageLabel;
 import com.google.firebase.ml.vision.label.FirebaseVisionImageLabeler;
 import com.google.firebase.ml.vision.label.FirebaseVisionOnDeviceImageLabelerOptions;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+
+import javax.net.ssl.HttpsURLConnection;
 
 public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_PERMISSION_STORAGE = 101;
@@ -53,9 +71,11 @@ public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_PERMISSION_CALENDAR = 1002;
     private static final int RC_SELECT_PICTURE = 103;
     private static final int RC_CAPTURE_IMAGE = 1;
+    private FusedLocationProviderClient fusedLocationClient;
     private Bitmap mBitmap;
     private Uri mImageUri;
     private String mCurrentPhotoPath;
+    private PendingIntent pIntent;
 
     private void showError(View view) {
         Snackbar.make(view, "Something went wrong", Snackbar.LENGTH_LONG)
@@ -74,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -132,6 +153,75 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        List<ActivityTransition> transitions = new ArrayList<>();
+
+        transitions.add(
+                new ActivityTransition.Builder()
+                        .setActivityType(DetectedActivity.IN_VEHICLE)
+                        .setActivityTransition(ActivityTransition.ACTIVITY_TRANSITION_ENTER)
+                        .build());
+
+        transitions.add(
+                new ActivityTransition.Builder()
+                        .setActivityType(DetectedActivity.ON_BICYCLE)
+                        .setActivityTransition(ActivityTransition.ACTIVITY_TRANSITION_ENTER)
+                        .build());
+        transitions.add(
+                new ActivityTransition.Builder()
+                        .setActivityType(DetectedActivity.RUNNING)
+                        .setActivityTransition(ActivityTransition.ACTIVITY_TRANSITION_ENTER)
+                        .build());
+        transitions.add(
+                new ActivityTransition.Builder()
+                        .setActivityType(DetectedActivity.WALKING)
+                        .setActivityTransition(ActivityTransition.ACTIVITY_TRANSITION_ENTER)
+                        .build());
+        ActivityTransitionRequest request = new ActivityTransitionRequest(transitions);
+
+        Intent intent = new Intent(this, MainActivity.class);
+        pIntent = PendingIntent.getService(this, 0, intent,PendingIntent.FLAG_UPDATE_CURRENT);
+
+        Task<Void> task = ActivityRecognition.getClient(this)
+                .requestActivityTransitionUpdates(request, pIntent);
+
+        Context thisConext = this;
+
+        task.addOnSuccessListener(
+                new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void result) {
+                        Toast.makeText(thisConext, "Success", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
+
+        task.addOnFailureListener(
+                new OnFailureListener() {
+                    @Override
+                    public void onFailure(Exception e) {
+                        Toast.makeText(thisConext, "Failure", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(thisConext, e.toString(), Toast.LENGTH_LONG).show();
+                    }
+                }
+        );
+        fusedLocationClient.getLastLocation()
+                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                    @Override
+                    public void onSuccess(Location location) {
+                        if (location != null) {
+
+                            try {
+                                System.out.println(location.getLatitude() + location.getLongitude());
+                                FetchArtists fetchArtists = new FetchArtists();
+                                fetchArtists.execute(location.getLatitude()+"_"+location.getLongitude());
+                            }
+                            catch(Exception e){
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                });
     }
 
     private void startPlaylistRecommendation(List<?> labels) {
