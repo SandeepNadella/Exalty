@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources tools:ignore="UnusedResources" xmlns:tools="http://schemas.android.com/tools">
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="UnusedResources">
 
     <!-- Cat color palette. -->
     <color name="cat_grayscale_8_90">#E6121314</color>

@@ -10,6 +10,7 @@ import com.google.android.gms.location.ActivityTransitionResult;
 
 public class MyBroadcastReceiver extends BroadcastReceiver {
     private static final String TAG = "MyBroadcastReceiver";
+
     @Override
     public void onReceive(Context context, Intent intent) {
         if (ActivityTransitionResult.hasResult(intent)) {

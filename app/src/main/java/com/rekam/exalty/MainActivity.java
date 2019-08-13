@@ -42,7 +42,6 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.ml.vision.FirebaseVision;
 import com.google.firebase.ml.vision.common.FirebaseVisionImage;
@@ -60,6 +59,9 @@ import java.util.List;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
+    public static final String[] EVENT_PROJECTION = new String[]{
+            CalendarContract.EventsEntity.TITLE
+    };
     private static final int REQUEST_PERMISSION_STORAGE = 101;
     private static final int REQUEST_PERMISSION_CAMERA = 1001;
     private static final int REQUEST_PERMISSION_CALENDAR = 1002;
@@ -70,6 +72,30 @@ public class MainActivity extends AppCompatActivity {
     private Uri mImageUri;
     private String mCurrentPhotoPath;
     private PendingIntent pIntent;
+
+    private static String getPath(Context context, Uri uri) {
+        String result = null;
+        String[] proj = {MediaStore.Images.Media.DATA};
+        Cursor cursor = context.getContentResolver().query(uri, proj, null, null, null);
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                int column_index = cursor.getColumnIndexOrThrow(proj[0]);
+                result = cursor.getString(column_index);
+            }
+            cursor.close();
+        }
+        if (result == null) {
+            result = "Not found";
+        }
+        return result;
+    }
+
+    private static Bitmap rotateImage(Bitmap source, float angle) {
+        Matrix matrix = new Matrix();
+        matrix.postRotate(angle);
+        return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(),
+                matrix, true);
+    }
 
     private void showError(View view) {
         Snackbar.make(view, "Something went wrong", Snackbar.LENGTH_LONG)
@@ -91,13 +117,6 @@ public class MainActivity extends AppCompatActivity {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showError();
-            }
-        });
 
         findViewById(R.id.captureYourWorld).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,8 +157,8 @@ public class MainActivity extends AppCompatActivity {
             public boolean onTouch(View v, MotionEvent event) {
                 final int DRAWABLE_RIGHT = 2;
                 //check if icon is clicked
-                if(event.getAction() == MotionEvent.ACTION_UP) {
-                    if(event.getRawX() >= (edittext.getRight() - edittext.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    if (event.getRawX() >= (edittext.getRight() - edittext.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
                         startPlaylistRecommendation(edittext.getText().toString());
                         return true;
                     }
@@ -174,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
         ActivityTransitionRequest request = new ActivityTransitionRequest(transitions);
 
         Intent intent = new Intent(this, MainActivity.class);
-        pIntent = PendingIntent.getService(this, 0, intent,PendingIntent.FLAG_UPDATE_CURRENT);
+        pIntent = PendingIntent.getService(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         Task<Void> task = ActivityRecognition.getClient(this)
                 .requestActivityTransitionUpdates(request, pIntent);
@@ -219,7 +238,7 @@ public class MainActivity extends AppCompatActivity {
     private void startPlaylistRecommendation(List<?> labels) {
         Intent playerIntent = new Intent(MainActivity.this, RemotePlayerActivity.class);
         List<String> labelsStr = new ArrayList<>();
-        if(!labels.isEmpty()) {
+        if (!labels.isEmpty()) {
             if (labels.get(0) instanceof FirebaseVisionImageLabel) {
                 for (FirebaseVisionImageLabel label : (List<FirebaseVisionImageLabel>) labels) {
                     Log.println(Log.DEBUG, "ML Kit", "Label: " + label.getText() + " Confidence: " + label.getConfidence());
@@ -239,10 +258,6 @@ public class MainActivity extends AppCompatActivity {
         Log.println(Log.DEBUG, "User Input", "Mood: " + mood);
         MainActivity.this.startActivity(playerIntent);
     }
-
-    public static final String[] EVENT_PROJECTION = new String[]{
-            CalendarContract.EventsEntity.TITLE
-    };
 
     private List<String> readCalendarEvents() {
         Calendar currentTime = Calendar.getInstance();
@@ -431,23 +446,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private static String getPath(Context context, Uri uri) {
-        String result = null;
-        String[] proj = {MediaStore.Images.Media.DATA};
-        Cursor cursor = context.getContentResolver().query(uri, proj, null, null, null);
-        if (cursor != null) {
-            if (cursor.moveToFirst()) {
-                int column_index = cursor.getColumnIndexOrThrow(proj[0]);
-                result = cursor.getString(column_index);
-            }
-            cursor.close();
-        }
-        if (result == null) {
-            result = "Not found";
-        }
-        return result;
-    }
-
     private void processImage(String imagePath) {
         mBitmap = null;
         BitmapFactory.Options bmOptions = new BitmapFactory.Options();
@@ -529,12 +527,5 @@ public class MainActivity extends AppCompatActivity {
         // Save a file: path for use with ACTION_VIEW intents
         mCurrentPhotoPath = image.getAbsolutePath();
         return image;
-    }
-
-    private static Bitmap rotateImage(Bitmap source, float angle) {
-        Matrix matrix = new Matrix();
-        matrix.postRotate(angle);
-        return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(),
-                matrix, true);
     }
 }

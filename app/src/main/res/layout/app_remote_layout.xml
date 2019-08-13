@@ -8,15 +8,13 @@
 
     <!-- Image cover art -->
 
-
-
     <FrameLayout
         android:id="@+id/image_frame"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="24dp"
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -30,14 +28,14 @@
             android:id="@+id/image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="6dp"
             android:onClick="onImageClicked"
+            android:padding="6dp"
             tools:srcCompat="@drawable/widget_placeholder" />
 
         <ImageView
-            android:src="@drawable/frame"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:src="@drawable/frame" />
 
     </FrameLayout>
     <!-- Current Track -->
@@ -57,14 +55,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias=".01" />
+
     <Button
         android:id="@+id/current_track_label"
         style="@style/Widget.Cat.Button.Small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:enabled="false"
         android:gravity="center"
         android:lines="2"
-        android:enabled="false"
         android:text="@string/title_current_track"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -91,7 +90,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image_frame"
         app:layout_constraintVertical_bias="0.2" />
-
 
 
     <androidx.appcompat.widget.AppCompatImageButton
@@ -183,5 +181,22 @@
         app:layout_constraintTop_toBottomOf="@+id/seek_to"
         app:layout_constraintVertical_bias="0.2"
         app:srcCompat="@drawable/btn_repeat" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toggle_repeat_button"
+        android:layout_marginBottom="10dp"
+        android:gravity="right"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/fab_margin"
+            app:srcCompat="@android:drawable/ic_menu_share" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
