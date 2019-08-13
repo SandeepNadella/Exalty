@@ -12,7 +12,7 @@ public class FetchArtists extends AsyncTask<String, Void, String> {
     protected String doInBackground(String... location) {
         String artist = "";
         try {
-            URL url = new URL("http://34.92.8.123:80?city="+location[0]);
+            URL url = new URL("http://34.92.8.123:80?city=" + location[0]);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             try {
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
@@ -23,7 +23,7 @@ public class FetchArtists extends AsyncTask<String, Void, String> {
                 }
                 bufferedReader.close();
                 artist = stringBuilder.toString();
-                System.out.println("Artists "+artist);
+                System.out.println("Artists " + artist);
 
             } finally {
                 urlConnection.disconnect();

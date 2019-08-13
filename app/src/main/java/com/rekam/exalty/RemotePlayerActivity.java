@@ -43,7 +43,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.AppCompatSeekBar;
-import androidx.appcompat.widget.AppCompatTextView;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
@@ -100,77 +99,33 @@ import okhttp3.Response;
 
 public class RemotePlayerActivity extends FragmentActivity {
 
+    public static final int AUTH_TOKEN_REQUEST_CODE = 0x10;
+    public static final int AUTH_CODE_REQUEST_CODE = 0x11;
     private static final String TAG = RemotePlayerActivity.class.getSimpleName();
-
     private static final String CLIENT_ID = "c68326b3dac74bc99cb02bc90019a7eb";
     private static final String REDIRECT_URI = "rekamspotify://callback";
-
     private static SpotifyAppRemote mSpotifyAppRemote;
-
+    private static List<String> mLabels = new ArrayList<>();
+    private static List<String> mUris = new ArrayList<>();
+    private static List<String> mNames = new ArrayList<>();
+    private static String mMood;
+    private final ErrorCallback mErrorCallback = new ErrorCallback() {
+        @Override
+        public void onError(Throwable throwable) {
+            RemotePlayerActivity.this.logError(throwable, "Something went wrong...");
+            Log.println(Log.ERROR, "ErrorCallback", throwable.getMessage());
+        }
+    };
+    private final OkHttpClient mOkHttpClient = new OkHttpClient();
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
-
     ImageView mCoverArtImageView;
     AppCompatImageButton mToggleShuffleButton;
     AppCompatImageButton mPlayPauseButton;
     AppCompatImageButton mToggleRepeatButton;
     AppCompatSeekBar mSeekBar;
     Button mPlayerStateButton;
-    private static List<String> mLabels = new ArrayList<>();
-    private static List<String> mUris = new ArrayList<>();
-    private static List<String> mNames = new ArrayList<>();
-    private static String mMood;
     List<View> mViews;
     TrackProgressBar mTrackProgressBar;
-
-
-    private final ErrorCallback mErrorCallback = new ErrorCallback() {
-        @Override
-        public void onError(Throwable throwable) {
-            RemotePlayerActivity.this.logError(throwable, "Something went wrong...");
-            Log.println(Log.ERROR,"ErrorCallback",throwable.getMessage());
-        }
-    };
-
-    Subscription<PlayerState> mPlayerStateSubscription;
-    private String mSharePlaylistURL;
-
-    public void onSubscribedToPlayerStateButtonClicked(View view) {
-
-        if (mPlayerStateSubscription != null && !mPlayerStateSubscription.isCanceled()) {
-            mPlayerStateSubscription.cancel();
-            mPlayerStateSubscription = null;
-        }
-
-        mPlayerStateButton.setVisibility(View.VISIBLE);
-
-        mPlayerStateSubscription = (Subscription<PlayerState>) mSpotifyAppRemote.getPlayerApi()
-                .subscribeToPlayerState()
-                .setEventCallback(mPlayerStateEventCallback)
-                .setLifecycleCallback(new Subscription.LifecycleCallback() {
-                    @Override
-                    public void onStart() {
-                        //logMessage("Event: start");
-                    }
-
-                    @Override
-                    public void onStop() {
-//                        logMessage("Event: end");
-                    }
-                })
-                .setErrorCallback(throwable -> {
-                    mPlayerStateButton.setVisibility(View.INVISIBLE);
-                    logError(throwable, "Subscribed to PlayerContext failed!");
-                });
-    }
-
-    @SuppressLint("SetTextI18n")
-    private final Subscription.EventCallback<PlayerContext> mPlayerContextEventCallback = new Subscription.EventCallback<PlayerContext>() {
-        @Override
-        public void onEvent(PlayerContext playerContext) {
-            mPlayerContextButton.setText(String.format(Locale.US, "%s\n%s", playerContext.title, playerContext.subtitle));
-            mPlayerContextButton.setTag(playerContext);
-        }
-    };
     @SuppressLint("SetTextI18n")
     private final Subscription.EventCallback<PlayerState> mPlayerStateEventCallback = new Subscription.EventCallback<PlayerState>() {
         @Override
@@ -231,8 +186,51 @@ public class RemotePlayerActivity extends FragmentActivity {
             mSeekBar.setEnabled(true);
         }
     };
+    Subscription<PlayerState> mPlayerStateSubscription;
     Button mPlayerContextButton;
+    @SuppressLint("SetTextI18n")
+    private final Subscription.EventCallback<PlayerContext> mPlayerContextEventCallback = new Subscription.EventCallback<PlayerContext>() {
+        @Override
+        public void onEvent(PlayerContext playerContext) {
+            mPlayerContextButton.setText(String.format(Locale.US, "%s\n%s", playerContext.title, playerContext.subtitle));
+            mPlayerContextButton.setTag(playerContext);
+        }
+    };
     Subscription<PlayerContext> mPlayerContextSubscription;
+    private String mSharePlaylistURL;
+    private String mAccessToken;
+    private String mAccessCode;
+    private Call mCall;
+
+    public void onSubscribedToPlayerStateButtonClicked(View view) {
+
+        if (mPlayerStateSubscription != null && !mPlayerStateSubscription.isCanceled()) {
+            mPlayerStateSubscription.cancel();
+            mPlayerStateSubscription = null;
+        }
+
+        mPlayerStateButton.setVisibility(View.VISIBLE);
+
+        mPlayerStateSubscription = (Subscription<PlayerState>) mSpotifyAppRemote.getPlayerApi()
+                .subscribeToPlayerState()
+                .setEventCallback(mPlayerStateEventCallback)
+                .setLifecycleCallback(new Subscription.LifecycleCallback() {
+                    @Override
+                    public void onStart() {
+                        //logMessage("Event: start");
+                    }
+
+                    @Override
+                    public void onStop() {
+//                        logMessage("Event: end");
+                    }
+                })
+                .setErrorCallback(throwable -> {
+                    mPlayerStateButton.setVisibility(View.INVISIBLE);
+                    logError(throwable, "Subscribed to PlayerContext failed!");
+                });
+    }
+
     public void onSubscribedToPlayerContextButtonClicked(View view) {
         if (mPlayerContextSubscription != null && !mPlayerContextSubscription.isCanceled()) {
             mPlayerContextSubscription.cancel();
@@ -246,6 +244,7 @@ public class RemotePlayerActivity extends FragmentActivity {
                     logError(throwable, "Subscribed to PlayerContext failed!");
                 });
     }
+
     private void onConnected() {
         for (View input : mViews) {
             input.setEnabled(true);
@@ -436,42 +435,44 @@ public class RemotePlayerActivity extends FragmentActivity {
                     @Override
                     public void onResult(Empty empty) {
 //                        RemotePlayerActivity.this.logMessage("Playing "+name);
-                        showSnackBar(null, "Playing "+name);
+                        showSnackBar(null, "Playing " + name);
                     }
                 })
                 .setErrorCallback(mErrorCallback);
     }
 
     private void playUris(List<String> uris, List<String> names) {
-        if(!uris.isEmpty()) {
-            Log.println(Log.ERROR,"PlayURI",uris.get(0));
+        if (!uris.isEmpty()) {
+            Log.println(Log.ERROR, "PlayURI", uris.get(0));
             playUri(uris.get(0), names.get(0));
-            if(uris.size()>1) {
-                for (int i=1;i<uris.size();i++) {
-                    Log.println(Log.ERROR,"QueueURI",uris.get(i));
+            if (uris.size() > 1) {
+                for (int i = 1; i < uris.size(); i++) {
+                    Log.println(Log.ERROR, "QueueURI", uris.get(i));
                     queueUri(uris.get(i));
                 }
             }
         }
     }
+
     private void playUris(List<String> uris) {
-        if(!uris.isEmpty()) {
-            Log.println(Log.ERROR,"PlayURI",uris.get(0));
+        if (!uris.isEmpty()) {
+            Log.println(Log.ERROR, "PlayURI", uris.get(0));
             playUri(uris.get(0));
-            if(uris.size()>1) {
-                for (int i=1;i<uris.size();i++) {
-                    Log.println(Log.ERROR,"QueueURI",uris.get(i));
+            if (uris.size() > 1) {
+                for (int i = 1; i < uris.size(); i++) {
+                    Log.println(Log.ERROR, "QueueURI", uris.get(i));
                     queueUri(uris.get(i));
                 }
             }
         }
     }
+
     private void queueUris(List<String> uris) {
-        if(!uris.isEmpty()) {
-                for (int i=0;i<uris.size();i++) {
-                    Log.println(Log.ERROR,"QueueURI",uris.get(i));
-                    queueUri(uris.get(i));
-                }
+        if (!uris.isEmpty()) {
+            for (int i = 0; i < uris.size(); i++) {
+                Log.println(Log.ERROR, "QueueURI", uris.get(i));
+                queueUri(uris.get(i));
+            }
         }
     }
 
@@ -682,6 +683,186 @@ public class RemotePlayerActivity extends FragmentActivity {
         });
     }
 
+    @Override
+    protected void onDestroy() {
+//        cancelCall();
+        super.onDestroy();
+    }
+
+    public void showSnackBar(View view, String msg) {
+        if (view == null) {
+            view = findViewById(R.id.app_remote_layout);
+        }
+        final Snackbar snackbar = Snackbar.make(view, msg, 6000);
+        snackbar.getView().setBackgroundColor(ContextCompat.getColor(this, R.color.snackBarBackground));
+        TextView tv = (TextView) snackbar.getView().findViewById(com.google.android.material.R.id.snackbar_text);
+        tv.setTextColor(Color.DKGRAY);
+        if (snackbar.isShown()) {
+            snackbar.dismiss();
+            snackbar.show();
+        } else {
+            snackbar.show();
+        }
+    }
+
+    private void getUserProfileAndStartSearch() {
+        if (mAccessToken == null) {
+            showSnackBar(null, "Access token is required");
+        }
+        final Request request = new Request.Builder()
+                .url("https://api.spotify.com/v1/me")
+                .addHeader("Authorization", "Bearer " + mAccessToken)
+                .build();
+
+        mCall = mOkHttpClient.newCall(request);
+
+        mCall.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+                showSnackBar(null, "Failed to fetch data");
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                try {
+                    final JSONObject jsonObject = new JSONObject(response.body().string());
+                    Log.println(Log.ERROR, "Response", jsonObject.toString());
+//                    RemotePlayerActivity.this.logMessage("Welcome "+jsonObject.getString("display_name"));
+                    if (mMood != null) {
+                        List<String> li = new ArrayList<>();
+                        li.add(mMood);
+                        getSpotifyUris(li);
+                    } else {
+                        getSpotifyUris(mLabels);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Log.println(Log.DEBUG, "Content", response.body().string());
+                    showSnackBar(null, "Failed to process data");
+                }
+            }
+        });
+    }
+
+    private void getSpotifyUris(List<String> labels) {
+        mUris.clear();
+        mNames.clear();
+        if (mAccessToken == null) {
+            showSnackBar(null, "Access token is required");
+        }
+        String encLabel = "";
+        String q = "";
+        for (int i = 0; i < labels.size(); i++) {
+            String label = labels.get(i);
+            if (i == 0) {
+                encLabel = label.replace(" ", "+");
+                // Searching for only one improves accuracy
+                break;
+            } else if (i == 1) {
+                encLabel += " OR " + label;
+                break;
+            } else {
+                //This is not used since Spotify doesn't support more than 2 words in search
+                encLabel += " OR " + label;
+            }
+        }
+        q = "?q=" + encLabel + "&type=playlist";
+        final Request request = new Request.Builder()
+                .url("https://api.spotify.com/v1/search" + q)
+                .addHeader("Authorization", "Bearer " + mAccessToken)
+                .build();
+
+        mCall = mOkHttpClient.newCall(request);
+
+        mCall.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+                showSnackBar(null, "Failed to fetch data");
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                try {
+                    final JSONObject jsonObject = new JSONObject(response.body().string());
+                    Log.println(Log.ERROR, "Search Response", jsonObject.toString());
+                    if (jsonObject.length() > 0) {
+                        Iterator<String> jsonObjKeys = jsonObject.keys();
+                        while (jsonObjKeys.hasNext()) {
+                            String key = jsonObjKeys.next();
+                            if ("playlists".equals(key)) {
+                                JSONObject tracks = jsonObject.getJSONObject(key);
+                                JSONArray items = tracks.getJSONArray("items");
+                                for (int i = 0; i < items.length(); i++) {
+                                    String uri = ((JSONObject) items.get(0)).getString("uri");
+                                    String name = ((JSONObject) items.get(0)).getString("name");
+                                    mSharePlaylistURL = ((JSONObject) items.get(0)).getJSONObject("external_urls").getString("spotify");
+                                    mUris.add(uri);
+                                    mNames.add(name);
+                                    //play only most popular playlist for now
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    playUris(mUris, mNames);
+                    finishActivity(RESULT_OK);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Log.println(Log.DEBUG, "Content", response.body().string());
+                    showSnackBar(null, "Failed to process data");
+                }
+            }
+        });
+    }
+
+    public void onRequestCodeClicked() {
+        final AuthenticationRequest request = getAuthenticationRequest(AuthenticationResponse.Type.CODE);
+        AuthenticationClient.openLoginActivity(this, AUTH_CODE_REQUEST_CODE, request);
+    }
+
+    public void onRequestTokenClicked() {
+        final AuthenticationRequest request = getAuthenticationRequest(AuthenticationResponse.Type.TOKEN);
+        AuthenticationClient.openLoginActivity(this, AUTH_TOKEN_REQUEST_CODE, request);
+    }
+
+    private AuthenticationRequest getAuthenticationRequest(AuthenticationResponse.Type type) {
+        return new AuthenticationRequest.Builder(CLIENT_ID, type, getRedirectUri().toString())
+                .setShowDialog(false)
+                .setScopes(new String[]{"user-read-email"})
+                .setCampaign("your-campaign-token")
+                .build();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        final AuthenticationResponse response = AuthenticationClient.getResponse(resultCode, data);
+
+        if (AUTH_TOKEN_REQUEST_CODE == requestCode) {
+            mAccessToken = response.getAccessToken();
+            if (mAccessToken != null) {
+                getUserProfileAndStartSearch();
+            }
+        } else if (AUTH_CODE_REQUEST_CODE == requestCode) {
+            mAccessCode = response.getCode();
+        }
+    }
+
+    private void cancelCall() {
+        if (mCall != null) {
+            mCall.cancel();
+        }
+    }
+
+    private Uri getRedirectUri() {
+        return new Uri.Builder()
+                .scheme("rekamwebspotify")
+                .authority("callback")
+                .build();
+    }
+
     private class TrackProgressBar {
 
         private static final int LOOP_DURATION = 500;
@@ -736,193 +917,5 @@ public class RemotePlayerActivity extends FragmentActivity {
             mHandler.removeCallbacks(mSeekRunnable);
             mHandler.postDelayed(mSeekRunnable, LOOP_DURATION);
         }
-    }
-
-    public static final int AUTH_TOKEN_REQUEST_CODE = 0x10;
-    public static final int AUTH_CODE_REQUEST_CODE = 0x11;
-
-    private final OkHttpClient mOkHttpClient = new OkHttpClient();
-    private String mAccessToken;
-    private String mAccessCode;
-    private Call mCall;
-
-    @Override
-    protected void onDestroy() {
-//        cancelCall();
-        super.onDestroy();
-    }
-
-    public void showSnackBar(View view, String msg) {
-            if(view == null) {
-               view = findViewById(R.id.app_remote_layout);
-            }
-            final Snackbar snackbar = Snackbar.make(view, msg, 6000);
-            snackbar.getView().setBackgroundColor(ContextCompat.getColor(this, R.color.snackBarBackground));
-            TextView tv = (TextView) snackbar.getView().findViewById(com.google.android.material.R.id.snackbar_text);
-            tv.setTextColor(Color.DKGRAY);
-            if(snackbar.isShown()) {
-                snackbar.dismiss();
-                snackbar.show();
-            } else {
-                snackbar.show();
-            }
-    }
-
-    private void getUserProfileAndStartSearch() {
-        if (mAccessToken == null) {
-            showSnackBar(null, "Access token is required");
-        }
-        final Request request = new Request.Builder()
-                .url("https://api.spotify.com/v1/me")
-                .addHeader("Authorization","Bearer " + mAccessToken)
-                .build();
-
-        mCall = mOkHttpClient.newCall(request);
-
-        mCall.enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                e.printStackTrace();
-                showSnackBar(null, "Failed to fetch data");
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                try {
-                    final JSONObject jsonObject = new JSONObject(response.body().string());
-                    Log.println(Log.ERROR, "Response",jsonObject.toString());
-//                    RemotePlayerActivity.this.logMessage("Welcome "+jsonObject.getString("display_name"));
-                    if(mMood!=null) {
-                        List<String> li = new ArrayList<>();
-                        li.add(mMood);
-                        getSpotifyUris(li);
-                    } else {
-                        getSpotifyUris(mLabels);
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    Log.println(Log.DEBUG, "Content", response.body().string());
-                    showSnackBar(null, "Failed to process data");
-                }
-            }
-        });
-    }
-
-    private void getSpotifyUris(List<String> labels) {
-        mUris.clear();
-        mNames.clear();
-        if (mAccessToken == null) {
-            showSnackBar(null, "Access token is required");
-        }
-        String encLabel = "";
-        String q = "";
-        for(int i=0;i<labels.size();i++) {
-            String label = labels.get(i);
-            if(i==0) {
-                encLabel = label.replace(" ", "+");
-                // Searching for only one improves accuracy
-                break;
-            } else if(i==1) {
-                encLabel += " OR "+label;
-                break;
-            }else{
-                //This is not used since Spotify doesn't support more than 2 words in search
-                encLabel += " OR "+label;
-            }
-        }
-        q = "?q=" + encLabel + "&type=playlist";
-            final Request request = new Request.Builder()
-                    .url("https://api.spotify.com/v1/search"+q)
-                    .addHeader("Authorization", "Bearer " + mAccessToken)
-                    .build();
-
-            mCall = mOkHttpClient.newCall(request);
-
-            mCall.enqueue(new Callback() {
-                @Override
-                public void onFailure(Call call, IOException e) {
-                    e.printStackTrace();
-                    showSnackBar(null, "Failed to fetch data");
-                }
-
-                @Override
-                public void onResponse(Call call, Response response) throws IOException {
-                    try {
-                        final JSONObject jsonObject = new JSONObject(response.body().string());
-                        Log.println(Log.ERROR, "Search Response", jsonObject.toString());
-                        if(jsonObject.length()>0) {
-                            Iterator<String> jsonObjKeys = jsonObject.keys();
-                            while (jsonObjKeys.hasNext()) {
-                                String key = jsonObjKeys.next();
-                                if ("playlists".equals(key)) {
-                                    JSONObject tracks = jsonObject.getJSONObject(key);
-                                    JSONArray items = tracks.getJSONArray("items");
-                                    for (int i = 0; i < items.length(); i++) {
-                                        String uri = ((JSONObject) items.get(0)).getString("uri");
-                                        String name = ((JSONObject) items.get(0)).getString("name");
-                                        mSharePlaylistURL = ((JSONObject) items.get(0)).getJSONObject("external_urls").getString("spotify");
-                                        mUris.add(uri);
-                                        mNames.add(name);
-                                        //play only most popular playlist for now
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                        playUris(mUris,mNames);
-                        finishActivity(RESULT_OK);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                        Log.println(Log.DEBUG, "Content", response.body().string());
-                        showSnackBar(null, "Failed to process data");
-                    }
-                }
-            });
-    }
-
-    public void onRequestCodeClicked() {
-        final AuthenticationRequest request = getAuthenticationRequest(AuthenticationResponse.Type.CODE);
-        AuthenticationClient.openLoginActivity(this, AUTH_CODE_REQUEST_CODE, request);
-    }
-
-    public void onRequestTokenClicked() {
-        final AuthenticationRequest request = getAuthenticationRequest(AuthenticationResponse.Type.TOKEN);
-        AuthenticationClient.openLoginActivity(this, AUTH_TOKEN_REQUEST_CODE, request);
-    }
-
-    private AuthenticationRequest getAuthenticationRequest(AuthenticationResponse.Type type) {
-        return new AuthenticationRequest.Builder(CLIENT_ID, type, getRedirectUri().toString())
-                .setShowDialog(false)
-                .setScopes(new String[]{"user-read-email"})
-                .setCampaign("your-campaign-token")
-                .build();
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        final AuthenticationResponse response = AuthenticationClient.getResponse(resultCode, data);
-
-        if (AUTH_TOKEN_REQUEST_CODE == requestCode) {
-            mAccessToken = response.getAccessToken();
-            if(mAccessToken!=null) {
-                getUserProfileAndStartSearch();
-            }
-        } else if (AUTH_CODE_REQUEST_CODE == requestCode) {
-            mAccessCode = response.getCode();
-        }
-    }
-
-    private void cancelCall() {
-        if (mCall != null) {
-            mCall.cancel();
-        }
-    }
-
-    private Uri getRedirectUri() {
-        return new Uri.Builder()
-                .scheme("rekamwebspotify")
-                .authority("callback")
-                .build();
     }
 }

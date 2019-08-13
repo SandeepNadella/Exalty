@@ -8,61 +8,65 @@
     tools:context=".MainActivity"
     tools:showIn="@layout/activity_main">
 
-  <TextView
-      android:layout_width="match_parent"
-      android:layout_height="96dp"
-      android:fontFamily="sans-serif-thin"
-      android:gravity="center"
-      android:text="@string/app_name"
-      android:textColor="@color/cat_white"
-      android:textSize="50dp" />
-  <LinearLayout
-      android:id="@+id/appRelativeLayout"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:gravity="center"
-      android:orientation="vertical">
-    <Button
-        android:id="@+id/surprise"
-        android:text="@string/surprise_txt"
-        style="@style/Widget.Cat.Button.Large"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:filterTouchesWhenObscured="false"/>
-    <Button
-        android:id="@+id/captureYourWorld"
-        android:layout_below="@id/surprise"
-        android:text="@string/cam_txt"
-        style="@style/Widget.Cat.Button.Large"
-        android:layout_width="wrap_content"
-        android:layout_margin="10dp"
-        android:layout_height="wrap_content"
-        android:filterTouchesWhenObscured="false" />
-    <Button
-        android:id="@+id/captureSomeWorld"
-        android:text="@string/gallery_txt"
-        android:layout_below="@id/captureYourWorld"
-        style="@style/Widget.Cat.Button.Large"
-        android:layout_width="wrap_content"
-        android:layout_margin="10dp"
-        android:layout_height="wrap_content"
-        android:filterTouchesWhenObscured="false" />
-    <EditText
-        android:id="@+id/captureUserInputMood"
-        android:layout_width="300dp"
-        android:layout_height="40dp"
-        android:textColorHint="@color/cat_white_12_5"
-        android:ems="10"
-        android:hint="feeling happy"
-        android:ellipsize="start"
-        android:layout_margin="10dp"
-        android:background="@drawable/text_input"
-        android:drawableRight="@drawable/ic_go_arrow"
-        android:backgroundTint="@android:color/white"
-        android:textColor="@android:color/white"
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="96dp"
+        android:fontFamily="sans-serif-thin"
         android:gravity="center"
-        android:singleLine="true">
-    </EditText>
-  </LinearLayout>
+        android:text="@string/app_name"
+        android:textColor="@color/cat_white"
+        android:textSize="50dp" />
+
+    <LinearLayout
+        android:id="@+id/appRelativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/surprise"
+            style="@style/Widget.Cat.Button.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:filterTouchesWhenObscured="false"
+            android:text="@string/surprise_txt" />
+
+        <Button
+            android:id="@+id/captureYourWorld"
+            style="@style/Widget.Cat.Button.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/surprise"
+            android:layout_margin="10dp"
+            android:filterTouchesWhenObscured="false"
+            android:text="@string/cam_txt" />
+
+        <Button
+            android:id="@+id/captureSomeWorld"
+            style="@style/Widget.Cat.Button.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/captureYourWorld"
+            android:layout_margin="10dp"
+            android:filterTouchesWhenObscured="false"
+            android:text="@string/gallery_txt" />
+
+        <EditText
+            android:id="@+id/captureUserInputMood"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/text_input"
+            android:backgroundTint="@android:color/white"
+            android:drawableRight="@drawable/ic_go_arrow"
+            android:ellipsize="start"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="feeling happy"
+            android:singleLine="true"
+            android:textColor="@android:color/white"
+            android:textColorHint="@color/cat_white_12_5"></EditText>
+    </LinearLayout>
 </RelativeLayout>
