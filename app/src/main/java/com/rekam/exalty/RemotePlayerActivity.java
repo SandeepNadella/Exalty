@@ -731,6 +731,7 @@ public class RemotePlayerActivity extends FragmentActivity {
     private String mAccessToken;
     private String mAccessCode;
     private Call mCall;
+    private String mArtist;
 
     @Override
     protected void onDestroy() {

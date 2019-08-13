@@ -7,13 +7,12 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
-import android.location.Address;
-import android.location.Geocoder;
 import android.location.Location;
 import android.media.ExifInterface;
 import android.net.Uri;
@@ -51,19 +50,14 @@ import com.google.firebase.ml.vision.label.FirebaseVisionImageLabel;
 import com.google.firebase.ml.vision.label.FirebaseVisionImageLabeler;
 import com.google.firebase.ml.vision.label.FirebaseVisionOnDeviceImageLabelerOptions;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
-
-import javax.net.ssl.HttpsURLConnection;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_PERMISSION_STORAGE = 101;
@@ -191,7 +185,7 @@ public class MainActivity extends AppCompatActivity {
                 new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void result) {
-                        Toast.makeText(thisConext, "Success", Toast.LENGTH_SHORT).show();
+
                     }
                 }
         );
@@ -200,8 +194,7 @@ public class MainActivity extends AppCompatActivity {
                 new OnFailureListener() {
                     @Override
                     public void onFailure(Exception e) {
-                        Toast.makeText(thisConext, "Failure", Toast.LENGTH_SHORT).show();
-                        Toast.makeText(thisConext, e.toString(), Toast.LENGTH_LONG).show();
+
                     }
                 }
         );
@@ -212,8 +205,7 @@ public class MainActivity extends AppCompatActivity {
                         if (location != null) {
 
                             try {
-                                System.out.println(location.getLatitude() + location.getLongitude());
-                                FetchArtists fetchArtists = new FetchArtists();
+                                FetchArtists fetchArtists = new FetchArtists(thisConext);
                                 fetchArtists.execute(location.getLatitude()+"_"+location.getLongitude());
                             }
                             catch(Exception e){
@@ -310,8 +302,27 @@ public class MainActivity extends AppCompatActivity {
             case REQUEST_PERMISSION_CALENDAR:
                 int hasCameraPermission = ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_CALENDAR);
                 if (hasCameraPermission == PackageManager.PERMISSION_GRANTED) {
-                    List<String> events = readCalendarEvents();
-                    startPlaylistRecommendation(events);
+                    SharedPreferences preferences = getSharedPreferences("ActionAppPreferences", 0);
+                    String artist;
+                    Random r = new Random();
+                    int random = r.nextInt((2 - 1) + 1) + 1;
+                    if(random == 1){
+                        artist = preferences.getString("Artist", "");
+                    }else{
+                        artist = preferences.getString("Weather", "");
+                    }
+                    if(!"".equals(artist)){
+                        startPlaylistRecommendation(artist);
+                        if(random == 1){
+                            Toast.makeText(this, "Playing from Location!", Toast.LENGTH_LONG).show();
+                        }else{
+                            Toast.makeText(this, "Playing from Weather!", Toast.LENGTH_LONG).show();
+                        }
+                    }else {
+                        List<String> events = readCalendarEvents();
+                        startPlaylistRecommendation(events);
+                        Toast.makeText(this, "Playing from Calendar events!", Toast.LENGTH_LONG).show();
+                    }
                 } else {
                     ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_CALENDAR}, requestCode);
                 }

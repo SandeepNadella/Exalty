@@ -16,6 +16,7 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
             ActivityTransitionResult result = ActivityTransitionResult.extractResult(intent);
             for (ActivityTransitionEvent event : result.getTransitionEvents()) {
                 Toast.makeText(context, event.getActivityType(), Toast.LENGTH_SHORT).show();
+                System.out.println(event.getActivityType());
             }
         }
     }
