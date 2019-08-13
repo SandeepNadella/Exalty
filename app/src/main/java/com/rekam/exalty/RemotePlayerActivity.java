@@ -49,6 +49,7 @@ import androidx.core.content.res.ResourcesCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.FragmentActivity;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -131,6 +132,7 @@ public class RemotePlayerActivity extends FragmentActivity {
     };
 
     Subscription<PlayerState> mPlayerStateSubscription;
+    private String mSharePlaylistURL;
 
     public void onSubscribedToPlayerStateButtonClicked(View view) {
 
@@ -288,6 +290,18 @@ public class RemotePlayerActivity extends FragmentActivity {
         onConnectAndAuthorizedClicked(null);
         mLabels = getIntent().getStringArrayListExtra("labels");
         mMood = getIntent().getStringExtra("mood");
+
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Intent.ACTION_SEND);
+                i.setType("text/plain");
+                i.putExtra(Intent.EXTRA_SUBJECT, "Sharing spotify playlist URL from Exalty");
+                i.putExtra(Intent.EXTRA_TEXT, mSharePlaylistURL);
+                startActivity(Intent.createChooser(i, "Share spotify playlist URL"));
+            }
+        });
     }
 
     @Override
@@ -846,6 +860,7 @@ public class RemotePlayerActivity extends FragmentActivity {
                                     for (int i = 0; i < items.length(); i++) {
                                         String uri = ((JSONObject) items.get(0)).getString("uri");
                                         String name = ((JSONObject) items.get(0)).getString("name");
+                                        mSharePlaylistURL = ((JSONObject) items.get(0)).getJSONObject("external_urls").getString("spotify");
                                         mUris.add(uri);
                                         mNames.add(name);
                                         //play only most popular playlist for now
