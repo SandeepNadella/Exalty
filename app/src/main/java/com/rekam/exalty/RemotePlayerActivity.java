@@ -201,6 +201,7 @@ public class RemotePlayerActivity extends FragmentActivity {
     private String mAccessToken;
     private String mAccessCode;
     private Call mCall;
+    private String mArtist;
 
     public void onSubscribedToPlayerStateButtonClicked(View view) {
 
@@ -683,71 +684,6 @@ public class RemotePlayerActivity extends FragmentActivity {
         });
     }
 
-    private class TrackProgressBar {
-
-        private static final int LOOP_DURATION = 500;
-        private final SeekBar mSeekBar;
-        private final Handler mHandler;
-
-
-        private final SeekBar.OnSeekBarChangeListener mSeekBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                mSpotifyAppRemote.getPlayerApi().seekTo(seekBar.getProgress())
-                        .setErrorCallback(mErrorCallback);
-            }
-        };
-
-        private final Runnable mSeekRunnable = new Runnable() {
-            @Override
-            public void run() {
-                int progress = mSeekBar.getProgress();
-                mSeekBar.setProgress(progress + LOOP_DURATION);
-                mHandler.postDelayed(mSeekRunnable, LOOP_DURATION);
-            }
-        };
-
-        private TrackProgressBar(SeekBar seekBar) {
-            mSeekBar = seekBar;
-            mSeekBar.setOnSeekBarChangeListener(mSeekBarChangeListener);
-            mHandler = new Handler();
-        }
-
-        private void setDuration(long duration) {
-            mSeekBar.setMax((int) duration);
-        }
-
-        private void update(long progress) {
-            mSeekBar.setProgress((int) progress);
-        }
-
-        private void pause() {
-            mHandler.removeCallbacks(mSeekRunnable);
-        }
-
-        private void unpause() {
-            mHandler.removeCallbacks(mSeekRunnable);
-            mHandler.postDelayed(mSeekRunnable, LOOP_DURATION);
-        }
-    }
-
-    public static final int AUTH_TOKEN_REQUEST_CODE = 0x10;
-    public static final int AUTH_CODE_REQUEST_CODE = 0x11;
-
-    private final OkHttpClient mOkHttpClient = new OkHttpClient();
-    private String mAccessToken;
-    private String mAccessCode;
-    private Call mCall;
-    private String mArtist;
-
     @Override
     protected void onDestroy() {
 //        cancelCall();
@@ -983,4 +919,5 @@ public class RemotePlayerActivity extends FragmentActivity {
             mHandler.postDelayed(mSeekRunnable, LOOP_DURATION);
         }
     }
+
 }

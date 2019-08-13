@@ -31,7 +31,7 @@ public class FetchArtists extends AsyncTask<String, Void, String> {
                 }
                 bufferedReader.close();
                 artist = stringBuilder.toString();
-                artist = artist.replaceAll("\n","");
+                artist = artist.replaceAll("\n", "");
 
             } finally {
                 urlConnection.disconnect();
@@ -41,7 +41,7 @@ public class FetchArtists extends AsyncTask<String, Void, String> {
         }
         //For weather
         try {
-            URL url = new URL("http://34.92.8.123:80/weather?city="+location[0]);
+            URL url = new URL("http://34.92.8.123:80/weather?city=" + location[0]);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             try {
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
@@ -54,10 +54,9 @@ public class FetchArtists extends AsyncTask<String, Void, String> {
                 String weather = stringBuilder.toString();
                 weather = weather.replaceAll("\n", "");
                 String[] weathers = weather.split(" ");
-                if(weathers.length == 2){
+                if (weathers.length == 2) {
                     weather = weathers[1];
-                }
-                else{
+                } else {
                     weather = weathers[0];
                 }
                 SharedPreferences preferences = this.mainContext.getSharedPreferences("ActionAppPreferences", 0);

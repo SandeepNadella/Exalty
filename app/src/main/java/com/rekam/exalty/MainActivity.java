@@ -225,9 +225,8 @@ public class MainActivity extends AppCompatActivity {
 
                             try {
                                 FetchArtists fetchArtists = new FetchArtists(thisConext);
-                                fetchArtists.execute(location.getLatitude()+"_"+location.getLongitude());
-                            }
-                            catch(Exception e){
+                                fetchArtists.execute(location.getLatitude() + "_" + location.getLongitude());
+                            } catch (Exception e) {
                                 e.printStackTrace();
                             }
                         }
@@ -321,19 +320,19 @@ public class MainActivity extends AppCompatActivity {
                     String artist;
                     Random r = new Random();
                     int random = r.nextInt((2 - 1) + 1) + 1;
-                    if(random == 1){
+                    if (random == 1) {
                         artist = preferences.getString("Artist", "");
-                    }else{
+                    } else {
                         artist = preferences.getString("Weather", "");
                     }
-                    if(!"".equals(artist)){
+                    if (!"".equals(artist)) {
                         startPlaylistRecommendation(artist);
-                        if(random == 1){
+                        if (random == 1) {
                             Toast.makeText(this, "Playing from Location!", Toast.LENGTH_LONG).show();
-                        }else{
+                        } else {
                             Toast.makeText(this, "Playing from Weather!", Toast.LENGTH_LONG).show();
                         }
-                    }else {
+                    } else {
                         List<String> events = readCalendarEvents();
                         startPlaylistRecommendation(events);
                         Toast.makeText(this, "Playing from Calendar events!", Toast.LENGTH_LONG).show();
